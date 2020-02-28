@@ -1,0 +1,24 @@
+        <div class="topnav" *ngIf="!currentUser">
+    <a class="personal" routerLink="personal" routerLinkActive="active">Personal</a>
+    <a class="privilege" routerLink="privilege" routerLinkActive="active">Privilege</a>
+    <a class="wealth" routerLink="wealth" routerLinkActive="active">Wealth</a>
+    <a class="private" href="#private">Private</a>
+    <a class="business" href="#business">Business</a>
+    <a class="corporate" href="#corporate">Corporate</a>
+    <a class="aboutus" routerLink="/aboutus">About Us</a>
+    <a class="cbdeals" href="#cbdeals">Cashback Deals</a>
+    <a class="offers" href="#offers">Offers</a>
+    <a class="help" href="#help">Help</a>
+    <button class="btn btn-primary" (click)="openLogin()" style="padding: 13px;">Login</button>  
+            
+  </div>
+  <nav class="navbar navbar-expand navbar-light" style="background-color:coral;" *ngIf="currentUser">
+    <div class="navbar-nav" style="width: 100% !important;">
+    <a class="nav-item nav-link" routerLink="/banking" style="color: black;">Banking</a>
+    <a class="nav-item nav-link" (click)="logout()" style="margin-left: 85%;color: black;">Logout</a>
+    </div>
+    </nav>
+<router-outlet></router-outlet>
+<footer class="page-footer font-small blue pt-1">
+            TEK BANK powered by TGS © 2020 Copyright
+</footer>

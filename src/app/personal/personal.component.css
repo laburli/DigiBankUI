@@ -1,0 +1,35 @@
+
+  personal {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    text-align: right;
+ 
+  }
+  
+.personal a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .personal a.product {
+    
+    color:blueviolet;
+  }
+  .personal a.apponline {
+    
+    color:blueviolet;
+  }
+  .personal a.banking {
+    
+    color:blueviolet;
+  }

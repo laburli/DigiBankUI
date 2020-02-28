@@ -1,0 +1,31 @@
+h3{
+    margin: 3%; 
+    text-align: center;
+}
+.accountDetails{
+    margin: 3%;
+}
+.formclass{
+    margin: 3%;
+    border: black solid;
+}
+label{
+    padding-left: 3%;
+    font-weight: bold;
+}
+.date-picker{
+    padding: 3%;
+}
+.dropDown{
+    padding: 3%; 
+}
+statement-summary{
+    padding: 3%;
+}
+.error{
+    margin: 3%;
+    color: red;
+    background-color: yellow;
+    text-align: center;
+     
+}

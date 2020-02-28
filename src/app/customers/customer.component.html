@@ -1,0 +1,667 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <app-alert></app-alert>
+<div class="card">
+    <div class="card-header">
+        Customer Registration
+    </div>
+
+    <div class="card-body">
+        <form novalidate (ngSubmit)="save()" [formGroup]="customerForm">
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label pt-0">Customer Status</label>
+                <div class="col-md-8">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+              <input
+                class="form-check-input"
+                id="csId"
+                type="radio"
+                value="Active"
+                formControlName="customerStatus"
+              />
+              Active
+            </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+              <input
+                class="form-check-input"
+                id="customerStatusId"
+                type="radio"
+                value="InActive"
+                formControlName="customerStatus"
+              />
+              InActive
+            </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="firstNameId">First Name</label
+        >
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="firstNameId"
+            type="text"
+            placeholder="First Name and user name are same (required)"
+            formControlName="customerName"
+            [ngClass]="{
+              'is-invalid':
+                (customerForm.get('customerName').touched ||
+                  customerForm.get('customerName').dirty) &&
+                !customerForm.get('customerName').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="customerForm.get('customerName').errors?.required">
+              Please enter your first name.
+            </span>
+            <span *ngIf="customerForm.get('customerName').errors?.minlength">
+              The first name must be longer than 3 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="middleNameId"
+          >Middle Name</label
+        >
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="middleNameId"
+            type="text"
+            placeholder="Middle Name (required)"
+            formControlName="middleName"
+            [ngClass]="{
+              'is-invalid':
+                (customerForm.get('middleName').touched ||
+                  customerForm.get('middleName').dirty) &&
+                !customerForm.get('middleName').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="customerForm.get('middleName').errors?.required">
+              Please enter your last name.
+            </span>
+            <span *ngIf="customerForm.get('middleName').errors?.maxlength">
+              The Midle Name name must be less than 3 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="lastNameId"
+          >Last Name</label
+        >
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="lastNameId"
+            type="text"
+            placeholder="Last Name (required)"
+            formControlName="lastName"
+            [ngClass]="{
+              'is-invalid':
+                (customerForm.get('lastName').touched ||
+                  customerForm.get('lastName').dirty) &&
+                !customerForm.get('lastName').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="customerForm.get('lastName').errors?.required">
+              Please enter your last name.
+            </span>
+            <span *ngIf="customerForm.get('lastName').errors?.maxlength">
+              The last name must be less than 50 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+      <div formArrayName="address">
+        <div [formGroupName]="i" *ngFor="let address of f; let i = index">
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label pt-0">Address Type</label>
+                <div class="col-md-8">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="addressType1Id"
+                    type="radio"
+                    value="home"
+                    formControlName="addressType"
+                  />
+                  Home
+                </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="addressType1Id"
+                    type="radio"
+                    value="work"
+                    formControlName="addressType"
+                  />
+                  Work
+                </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="addressType1Id"
+                    type="radio"
+                    value="other"
+                    formControlName="addressType"
+                  />
+                  Other
+                </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" attr.for="{{ 'dnoId' + i }}">Door Number</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="{{ 'dnoId' + i }}"
+                type="text"
+                placeholder="Door Number (required)"
+                formControlName="doorNumber"
+                [ngClass]="{
+                  'is-invalid':
+                    (address.controls.doorNumber.touched ||
+                      address.controls.doorNumber.dirty) &&
+                    !address.controls.doorNumber.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="address.controls.doorNumber.errors?.required">
+                  Please enter your door number.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" attr.for="{{ 'lmId' + i }}"
+              >Land Mark</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="{{ 'lmId' + i }}"
+                type="text"
+                placeholder="Land Mark (required)"
+                formControlName="landMark"
+                [ngClass]="{
+                  'is-invalid':
+                    (address.controls.landMark.touched ||
+                      address.controls.landMark.dirty) &&
+                    !address.controls.landMark.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="address.controls.landMark.errors?.required">
+                  Please enter your Land Mark.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label
+              class="col-md-2 col-form-label"
+              attr.for="{{ 'streetId' + i }}"
+              >Street Address
+            </label>
+                <div class="col-md-8">
+                    <input class="form-control" id="{{ 'streetId' + i }}" type="text" placeholder="Street address (required)" formControlName="street" [ngClass]="{
+                  'is-invalid':
+                    (address.controls.street.touched ||
+                      address.controls.street.dirty) &&
+                    !address.controls.street.valid
+                }" />
+                    <span class="invalid-feedback">
+                <span *ngIf="address.controls.street.errors?.required">
+                  Please enter your street address.
+                </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" attr.for="{{ 'cityId' + i }}">City
+            </label>
+                <div class="col-md-8">
+                    <input class="form-control" id="{{ 'cityId' + i }}" type="text" placeholder="Street address (required)" formControlName="city" [ngClass]="{
+                  'is-invalid':
+                    (address.controls.city.touched ||
+                      address.controls.city.dirty) &&
+                    !address.controls.city.valid
+                }" />
+                    <span class="invalid-feedback">
+                <span *ngIf="address.controls.city.errors?.required">
+                  Please enter your City .
+                </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="stateId">State</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="{{ 'stateId' + i }}" formControlName="state">
+                <option value="" disabled selected hidden
+                  >Select a State...</option
+                >
+                <option value="AP">AP</option>
+                <option value="TS">TS</option>
+                <option value="KA">KA</option>
+              </select>
+                    <span class="invalid-feedback">
+                <span *ngIf="address.controls.state.errors?.range">
+                  Please select your county from dropdown.
+                </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="countryId">Country</label
+            >
+            <div class="col-md-8">
+              <select
+                class="form-control"
+                id="{{ 'countryId' + i }}"
+                formControlName="country"
+              >
+                <option value="" disabled selected hidden
+                  >Select a Country...</option
+                >
+                <option value="IN">IND</option>
+                <option value="US">US</option>
+                <option value="UK">UK</option>
+              </select>
+              <span class="invalid-feedback">
+                <span *ngIf="address.controls.country.errors?.range">
+                  Please select your county from dropdown.
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="pincodeId"
+              >Pin Code</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="pincodeId"
+                type="number"
+                placeholder="Pin Code"
+                formControlName="pinCode"
+                [ngClass]="{
+                  'is-invalid':
+                    (address.controls.pinCode.touched ||
+                      address.controls.pinCode.dirty) &&
+                    !address.controls.pinCode.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="address.controls.pinCode.errors?.required">
+                  Please enter your pincode.
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="col-md-4">
+          <button
+            class="btn btn-outline-primary"
+            type="button"
+            [title]="
+              addresses.valid
+                ? 'Add another mailing address'
+                : 'Disabled until the existing address data is valid'
+            "
+            [disabled]="!addresses.valid"
+            (click)="addAddress()"
+          >
+            Add Another Address
+          </button>
+        </div>
+
+        <div class="col-md-4">
+          <button
+            class="btn btn-danger"
+            *ngIf="addresses.length > 1"
+            (click)="removeAddresses()"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <div formArrayName="email">
+        <div [formGroupName]="i" *ngFor="let email of e; let i = index">
+          <div class="form-group row mb-2">
+            <div class="col-md-8">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="isPrimaryEmailId"
+                    type="checkbox"
+                    formControlName="isPrimaryEmail"
+                  />Is Primary Email
+                </label>
+            </div>
+    </div>
+</div>
+
+<div class="form-group row mb-2">
+    <label class="col-md-2 col-form-label pt-0">Email Type</label>
+    <div class="col-md-8">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="emailType1Id"
+                    type="radio"
+                    value="home"
+                    formControlName="emailType"
+                  />
+                  office
+                </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="emailType1Id"
+                    type="radio"
+                    value="work"
+                    formControlName="emailType"
+                  />
+                  Personal
+                </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="email1Id"
+                    type="radio"
+                    value="other"
+                    formControlName="emailType"
+                  />
+                  Other
+                </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row mb-2">
+    <label class="col-md-2 col-form-label" attr.for="{{ 'emailId' + i }}">Email
+            </label>
+    <div class="col-md-8">
+        <input class="form-control" id="{{ 'emailAddressId' + i }}" type="email" placeholder="Email address (required)" formControlName="emailAddress" [ngClass]="{
+                  'is-invalid':
+                    (email.controls.emailAddress.touched ||
+                      email.controls.emailAddress.dirty) &&
+                    !email.controls.emailAddress.valid
+                }" />
+
+        <span class="invalid-feedback">
+                <span *ngIf="email.controls.emailAddress.errors?.required">
+                  Please enter email address .
+                </span>
+        <span *ngIf="email.controls.emailAddress.errors?.email">
+                  Please enter valid email.
+                </span>
+        </span>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="form-group row mb-2">
+    <div class="col-md-4">
+        <button class="btn btn-outline-primary" type="button" [title]="
+              emails.valid
+                ? 'Add another Email address'
+                : 'Disabled until the existing email data is valid'
+            " [disabled]="!emails.valid" (click)="addEmails()">
+            Add Another Email
+          </button>
+    </div>
+
+    <div class="col-md-4">
+        <button class="btn btn-danger" *ngIf="emails.length > 1" (click)="removeItem()">
+            Remove
+          </button>
+    </div>
+</div>
+
+<div formArrayName="phoneNumber">
+    <div [formGroupName]="i" *ngFor="let phoneNumber of p; let i = index">
+        <div class="form-group row mb-2">
+            <div class="col-md-8">
+                <div class="form-check">
+                    <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="isPrimaryNumberId"
+                    type="checkbox"
+                    formControlName="isPrimaryNumber"
+                  />Is Primary Number
+                </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label pt-0">Phone Number Type</label
+            >
+            <div class="col-md-8">
+              <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="phoneNumberTypeId"
+                    type="radio"
+                    value="home"
+                    formControlName="phoneNumberType"
+                  />
+                  office
+                </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="phoneNumberTypeId"
+                    type="radio"
+                    value="work"
+                    formControlName="phoneNumberType"
+                  />
+                  Personal
+                </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                  <input
+                    class="form-check-input"
+                    id="phoneNumberTypeId"
+                    type="radio"
+                    value="other"
+                    formControlName="phoneNumberType"
+                  />
+                  Other
+                </label>
+        </div>
+    </div>
+</div>
+<div class="form-group row mb-2">
+    <label class="col-md-2 col-form-label" for="phoneId">Country Code</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="countryCodeId"
+                type="number"
+                placeholder="country Code"
+                formControlName="countryCode"
+                [ngClass]="{
+                  'is-invalid':
+                    (phoneNumber.controls.countryCode.touched ||
+                      phoneNumber.controls.countryCode.dirty) &&
+                    !phoneNumber.controls.countryCode.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="phoneNumber.controls.countryCode.errors?.required">
+                  Please enter your country code.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="phoneId"
+              >City Code</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="cityCodeId"
+                type="number"
+                placeholder="country Code"
+                formControlName="cityCode"
+                [ngClass]="{
+                  'is-invalid':
+                    (phoneNumber.controls.cityCode.touched ||
+                      phoneNumber.controls.cityCode.dirty) &&
+                    !phoneNumber.controls.cityCode.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="phoneNumber.controls.cityCode.errors?.required">
+                  Please enter your city code.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="phoneId"
+              >Phone Number</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="pnId"
+                type="number"
+                placeholder="Phone"
+                formControlName="number"
+                [ngClass]="{
+                  'is-invalid':
+                    (phoneNumber.controls.number.touched ||
+                      phoneNumber.controls.number.dirty) &&
+                    !phoneNumber.controls.number.valid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="phoneNumber.controls.number.errors?.required">
+                  Please enter your phone number.
+                </span>
+                <span *ngIf="phoneNumber.controls.number.errors?.pattern">
+                  Phone number must be digits.
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="col-md-4">
+          <button
+            class="btn btn-outline-primary"
+            type="button"
+            [title]="
+              phoneNumbers.valid
+                ? 'Add another PhoneNumber '
+                : 'Disabled until the existing phone data is valid'
+            "
+            [disabled]="!phoneNumbers.valid"
+            (click)="addPhoneNumbers()"
+          >
+            Add Another PhoneNumber
+          </button>
+        </div>
+
+        <div class="col-md-4">
+          <button
+            class="btn btn-danger"
+            *ngIf="phoneNumbers.length > 1"
+            (click)="removephoneNumbers()"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button
+            class="btn btn-primary mr-3"
+            type="submit"
+            style="width:80px"
+            [title]="
+              customerForm.valid
+                ? 'Save your entered data'
+                : 'Disabled until the form data is valid'
+            "
+            [disabled]="!customerForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="successMessage" class="alert alert-sucess">
+  {{ successMessage }}
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 
+<br />Street: {{ addresses.get("0.street")?.value }}
+
+<br />Dirty: {{ customerForm.dirty }} <br />Touched: {{ customerForm.touched }}
+<br />
+touched: {{ this.customerForm.get("email").get("0.emailAddress").touched }},
+{{ this.customerForm.get("phoneNumber").get("0.number").touched }}
+<br />Valid: {{ customerForm.valid }} -->

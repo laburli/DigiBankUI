@@ -1,0 +1,14 @@
+h2.about{
+    color: brown;
+}
+
+
+.topnav a {
+    float: left;
+    display: block;
+    color: blue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
