@@ -74,12 +74,12 @@
         <form novalidate (ngSubmit)="updatePayeeOnClick()" [formGroup]="payeeForm" class="form-horizontal">
           <div class="form-group row">
             <label for="name" class="col">Payee Name
-              <input type="text" class="form-control col" name="name" id="name" formControlName="name" required
+              <input type="text" class="form-control col" name="name" id="name" pattern = "^[A-Z][a-zA-Z. ]+$" formControlName="name" required
                 [ngClass]="{'is-invalid': (payeeForm.get('name').touched ||
           payeeForm.get('name').dirty) && !payeeForm.get('name').valid }" />
               <div [hidden]="payeeForm.get('name').valid || payeeForm.get('name').pristine"
                 class="alert alert-danger col">
-                Name of the Payee is required
+                Please Enter Payee Name 
               </div>
             </label>
             <label for="nickName" class="col">Nick Name
