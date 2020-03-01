@@ -1,0 +1,144 @@
+#parent_div_1, #parent_div_2{
+    width: 109px;
+    height: 24px;
+    border: 1px solid black;
+    margin-right: 0px;
+    float: left;
+    background-color: gray;
+    border-spacing: 0px;
+    padding: 2px;
+    margin-left: 0px;  
+}
+.child_div_1{
+    float:left;
+    margin-left: 71%;
+}
+
+
+#parent_div_4,#parent_div_3 {
+    width: 109px;
+    height: 24px;
+    border: 1px solid black;
+    margin-right: 0px;
+    float: left;
+    background-color: white;
+    border-spacing: 0px;
+    padding: 2px;
+    margin-left: 0px;  
+}
+
+#parent_div_5 {
+    width: 109px;
+    height: 24px;
+    border: 1px solid black;
+    margin-right: 0px;
+    float: left;
+    background-color: gray;
+    border-spacing: 0px;
+    padding: 2px;
+    margin-left: 0px;  
+}
+
+#parent_div_6 {
+    width: 109px;
+    height: 24px;
+    border: 1px solid black;
+    margin-right: 0px;
+    float: left;
+    background-color: white;
+    border-spacing: 0px;
+    padding: 2px;
+    margin-left: 0px;  
+}
+
+#parent_div_8 {
+    width: 109px;
+    height: 15px;
+    border: 1px solid black;
+    margin-right: -28px;
+    float: left;
+    background-color: white;
+    border-spacing: 0px;
+    padding: 2px;
+    margin-left: 0px;
+}
+
+#parent_div_7 {
+    width: 109px;
+    height: 15px;
+    border: 1px solid black;
+    margin-right: -28px;
+    float: left;
+    background-color: gray;
+    border-spacing: 0px;
+    padding: 2px;
+    margin-left: 0px;
+}
+.child_div_2{
+    float:left;
+    margin-left: 71%;
+}
+
+// #parent_div_5 {
+//         /* width: 40px; */
+//         height: 24px;
+//         border: 1px solid black;
+//         margin-right: 0px;
+//         float: left;
+//         background-color: white;
+//         border-spacing: 0px;
+//         padding: 2px;
+//         margin-left: -183px;
+//         margin-right: 23px;
+// }
+.child_div_3{
+    float:left;
+    margin-left: 5%;
+}
+
+.child_div_4{
+    float:left;
+    margin-left: 2%;
+}
+
+::ng-deep .langSelect div.mat-select-arrow-wrapper {
+    display: none;
+  }
+  
+  ::ng-deep .langSelect.mat-select {
+    display: inline;
+  }
+
+  .formclass{
+    margin: 3%;
+    border: black solid;
+}
+
+table {
+    width: 78%;
+    margin :3%
+}
+
+.headerCell {
+    background-color: bisque ;
+    text-size-adjust: 10%;
+    font-weight: bold;
+    font-size: medium;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .dropDown{
+    padding: 1%; 
+}
+
+.mat-select-panel mat-option.mat-option {
+    height: unset;
+  }
+
+ .mat-option-text.mat-option-text {
+    white-space: normal;
+  }
+  

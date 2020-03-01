@@ -10,11 +10,13 @@ import { WealthComponent } from './wealth/wealth.component';
 import { BankingComponent } from './banking/banking.component';
 import { CustomerComponent } from './customers/customer.component';
 import { StatementFormComponent } from './statement-form/statement-form.component';
+import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 
  
 
 const routes: Route[] = [
-    {path:'viewStatement', component: StatementFormComponent},       
+    {path:'viewStatement', component: StatementFormComponent},  
+    {path:'accountSummary/:customerId', component: AccountSummaryComponentComponent},             
 {path:'login', component:LoginComponent},
  {path:'home',component:HomeComponent},
  {path:'register',component:CustomerComponent},

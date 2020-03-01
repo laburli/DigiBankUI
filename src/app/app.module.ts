@@ -31,7 +31,8 @@ import { StatementFormComponent } from './statement-form/statement-form.componen
 import { TableComponent } from './table/table.component';
 import { StatementService } from './statement.service';
 import { MatSelectModule } from '@angular/material/select';
-
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
     MouseWheelDirective,
     CustomerComponent,
     StatementFormComponent,
-    TableComponent
+    TableComponent,
+    AccountSummaryComponentComponent
    ],
   imports: [
     BrowserModule,
@@ -61,7 +63,15 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     DemoMaterialModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+        backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+        backdropBorderRadius: '4px',
+        primaryColour: '#ffffff', 
+        secondaryColour: '#ffffff', 
+        tertiaryColour: '#ffffff'
+    }),
    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
