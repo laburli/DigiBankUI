@@ -16,7 +16,7 @@ import { AccountSummaryComponentComponent } from './account-summary-component/ac
 
 const routes: Route[] = [
     {path:'viewStatement', component: StatementFormComponent},  
-    {path:'accountSummary/:customerId', component: AccountSummaryComponentComponent},             
+    {path:'accountSummary', component: AccountSummaryComponentComponent},             
 {path:'login', component:LoginComponent},
  {path:'home',component:HomeComponent},
  {path:'register',component:CustomerComponent},

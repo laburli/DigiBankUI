@@ -5,6 +5,7 @@ import { ApiServiceService } from '../_services/api-service.service';
 import { CreditDebitRequestDTO } from '../CreditDebitRequestDTO';
 import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '../_services/alert.service';
+import { AuthenticationService } from '../_services/authentication.service';
 
 
 @Component({
@@ -31,6 +32,8 @@ export class AccountSummaryComponentComponent implements OnInit {
 
   
    totalBankBalance : any;
+
+   custId : any;
    
    totalAvailableBalance:any;
    returnObj : any;
@@ -57,17 +60,16 @@ export class AccountSummaryComponentComponent implements OnInit {
    
     //alert(this.creditDebitRequestDTO.customerId);
     this.creditDebitRequestDTO = new CreditDebitRequestDTO(); 
-    this.route.params.subscribe( params =>  this.creditDebitRequestDTO.customerId = params['customerId'] );
-   
+    //this.route.params.subscribe( params =>  this.creditDebitRequestDTO.customerId = params['customerId'] );
+    
     this.creditDebitRequestDTO.startDate = "06-05-2019";
     this.creditDebitRequestDTO.endDate = "06-05-2020";
     this.getActuallApiCall();
   }
 
   constructor(private apiService: ApiServiceService, 
-    private route: ActivatedRoute,private alertService: AlertService
-    ) {
-     
+    private route: ActivatedRoute,private alertService: AlertService,private authenticationService: AuthenticationService) {
+      //this.custId = this.authenticationService.currentUserValue.customerId;
      }
 
   @ViewChild('button') button: ElementRef;
@@ -79,7 +81,10 @@ export class AccountSummaryComponentComponent implements OnInit {
   getActuallApiCall(){
    this.loading = true;
    this.alertService.clear();
-    this.apiService.getCustomerDetails(this.creditDebitRequestDTO.customerId).subscribe(customer => {
+   if(this.custId==null){
+    this.custId =1;
+   }
+    this.apiService.getCustomerDetails(this.custId).subscribe(customer => {
       this.customerDetails =customer;
       this.acctDetails = this.customerDetails[0].account;
       
