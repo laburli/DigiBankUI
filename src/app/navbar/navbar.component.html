@@ -1,0 +1,54 @@
+<mat-toolbar class="custom" color="warn" >
+
+  <a mat-button routerLink="/viewStatement">
+    <i class="material-icons orange">
+      list
+    </i>
+    ViewStatements
+  </a>
+
+  <a mat-button  routerLink="/RechargeNow">
+    <i class="material-icons orange">
+      phonelink_ring
+    </i>
+    RechargeNow
+  </a>
+
+  <a mat-button color="white" routerLink="/SendMoney">
+    <i class="material-icons orange">
+      swap_horiz
+    </i>
+    SendMoney
+  </a>
+  <a mat-button routerLink="/PayBills">
+    <i class="material-icons orange">
+      post_add
+    </i>
+    PayBills
+  </a>
+  <a mat-button routerLink="/OpenWish">
+    <i class="material-icons orange">
+      local_atm
+    </i>
+    Open iWish
+  </a>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <i class="material-icons orange">
+      keyboard_arrow_down
+    </i>Customer Service</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Update email</button>
+    <button mat-menu-item>Update Address</button>
+    <button mat-menu-item>Update Customer</button>
+  </mat-menu>
+  <div class="end">
+    Welcome, {{currentUser.firstName}}:{{currentUser.id}}
+    <a mat-button (click)="logout()">
+      <i class="material-icons orange">
+        track_changes
+      </i>Logout
+    </a>
+  </div>
+  </mat-toolbar>
+
+<router-outlet></router-outlet>p

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './../_models/User';
+import { AuthenticationService } from './../_services/authentication.service';
+
 
 @Component({
   selector: 'app-banking',
@@ -6,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./banking.component.css']
 })
 export class BankingComponent implements OnInit {
+currentUser: User;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) {
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    }
+
 
   ngOnInit() {
   }

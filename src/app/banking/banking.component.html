@@ -1,54 +1,6 @@
-<!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand navbar-dark indigo">
-        <nav class="navbar navbar-expand navbar-dark primary-color" 
-        style="background-color:bisque; box-shadow: none !important;">
-    <links style="height: 50px;" >
-       <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-            <!-- Dropdown -->
-            <li class="nav-item dropdown" dropdown>
-                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
-                 mdbWavesEffect style="color: black;">My Accounts<span class="caret" ></span></a>
-<div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
-<a class="dropdown-item waves-light" mdbWavesEffect href="#">Account Summary</a>
-<a class="dropdown-item waves-light" mdbWavesEffect href="/viewStatement">View Statement</a>
-<a class="dropdown-item waves-light" mdbWavesEffect href="#">Bank Accounts</a>
-<a class="dropdown-item waves-light" mdbWavesEffect href="#">Credit Cards</a>
-<a class="dropdown-item waves-light" mdbWavesEffect href="#">PayLater</a>
-</div>
-</li>
-            <!-- Dropdown -->
-            <li class="nav-item dropdown" dropdown>
-<a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
- mdbWavesEffect style="color: black;">
-                Payments & Transfer<span class="caret"></span></a>
-                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Action</a>
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Another action</a>
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Something else here</a>
-                    <div class="divider dropdown-divider"></div>
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Separated link</a>
-                </div>
-            </li>
+
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
 
 
-            <li class="nav-item dropdown" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
-                     mdbWavesEffect style="color: black;">
-                                    Customer Serivce<span class="caret"></span></a>
-                                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Upudate Address</a>
-                                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Update Customer</a>
-                                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Update Email</a>
-                                       </div>
-                                </li>
-                    
 
-        </ul>
-        <!-- Links -->
-        
-    </links>
-    <!-- Collapsible content -->
-</nav>
-</mdb-navbar>
-<!--/.Navbar-->
