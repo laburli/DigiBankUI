@@ -1,0 +1,9 @@
+button{
+    border-radius: 30px;
+}
+
+mdb-card-body{
+    overflow: auto;
+    text-align: justify;
+     max-height: 500px;
+}
