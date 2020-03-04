@@ -2,36 +2,42 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule,Routes } from '@angular/router';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { DemoMaterialModule } from './material-module';
+import { MatSelectModule } from '@angular/material/select';
+
+import { JwtInterceptor } from '../_helpers/jwt.interceptor';
+import { ErrorInterceptor } from '../_helpers/error.interceptor';
+
+import { fakeBackendProvider } from '../_helpers/fake-backend';
+import { MouseWheelDirective } from './mouse-wheel.directive';
+import { StatementService } from './statement.service';
+
+import { AppComponent } from './app.component';
 import { PersonalComponent } from './personal/personal.component';
-import {RouterModule,Routes} from '@angular/router';
 import { PrivilegeComponent } from './privilege/privilege.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { WealthComponent } from './wealth/wealth.component';
-import { JwtInterceptor } from '../_helpers/jwt.interceptor';
-import { ErrorInterceptor } from '../_helpers/error.interceptor';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
 import { HomeComponent } from './home/home.component';
-import { fakeBackendProvider } from '../_helpers/fake-backend';
 import { BankingComponent } from './banking/banking.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import { DemoMaterialModule } from './material-module';
-import { ScrollSlideshowComponent } from './scroll-slideshow/scroll-slideshow.component';
 import { ScrollSlideshowItemComponent } from './scroll-slideshow-item/scroll-slideshow-item.component';
-import { MouseWheelDirective } from './mouse-wheel.directive';
+import { ScrollSlideshowComponent } from './scroll-slideshow/scroll-slideshow.component';
 import { CustomerComponent } from './customers/customer.component';
 import { StatementFormComponent } from './statement-form/statement-form.component';
 import { TableComponent } from './table/table.component';
-import { StatementService } from './statement.service';
-import { MatSelectModule } from '@angular/material/select';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import { RechargeNowComponent } from './navbar/recharge-now/recharge-now.component';
+import { SendMoneyComponent } from './navbar/send-money/send-money.component';
+import { PayMoneyComponent } from './navbar/pay-money/pay-money.component';
+import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
 
 
 @NgModule({
@@ -50,7 +56,12 @@ import { MatSelectModule } from '@angular/material/select';
     MouseWheelDirective,
     CustomerComponent,
     StatementFormComponent,
-    TableComponent
+    TableComponent,
+    NavbarComponent,
+    RechargeNowComponent,
+    SendMoneyComponent,
+    PayMoneyComponent,
+    OpenWishComponent,
    ],
   imports: [
     BrowserModule,
@@ -64,22 +75,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule
    ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider,StatementService
   ],
   bootstrap: [AppComponent],
-  
+
 })
 
-
-  
-
 export class AppModule {
-
-
-
-
-
-
  }
