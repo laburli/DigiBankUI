@@ -1,0 +1,14 @@
+<div class="search-container">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput class="payeeSearchForm" (click)="observeChanges()" placeholder="Search Payee by Name or Account Number" aria-label="PayeeList" [matAutocomplete]="auto" [formControl]="payeeCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let payee of filteredPayees | async" [value]="payee.name">
+          <img style="vertical-align:middle;" aria-hidden src="{{payee.flag}}" height="25" />
+          <span>Payee Name: {{ payee.name }}</span> |
+          <small>Account Number: {{payee.payeeAccountNumber}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

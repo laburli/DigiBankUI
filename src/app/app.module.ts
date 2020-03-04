@@ -38,6 +38,7 @@ import { RechargeNowComponent } from './navbar/recharge-now/recharge-now.compone
 import { SendMoneyComponent } from './navbar/send-money/send-money.component';
 import { PayMoneyComponent } from './navbar/pay-money/pay-money.component';
 import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
+import { SearchPayeeComponent } from './search-payee/search-payee.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
     SendMoneyComponent,
     PayMoneyComponent,
     OpenWishComponent,
+    SearchPayeeComponent
    ],
   imports: [
     BrowserModule,
