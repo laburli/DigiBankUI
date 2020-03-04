@@ -1,0 +1,117 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+
+
+
+<div id="mainDiv" style="padding-top: 5%;padding-right: 73%;">
+  
+    <h2>
+      <p style="text-align:center;padding-right: 16%;"><u>View Account Summary</u></p>
+    </h2>
+    
+    <div>
+      <b><label for="acct" style="text-align:center; padding-left: 13%;">I Want To See My:</label></b>
+       &nbsp;
+       <select id="account">
+        <option value="Bank Account">Bank Account</option>
+      </select>
+      &nbsp;
+      <button type="button" (click)="clickEvent()">Go</button>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <table mat-table [dataSource]="firstDataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="totalDebitSum">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Total DebitSum </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalDebitSum}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="totalCreditSum">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Total CreditSum </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalCreditSum}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="availableBalance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell">  Available balance </th>
+        <td mat-cell *matCellDef="let element"> {{element.availableBalance}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="firstDisplayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: firstDisplayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div class="wrapper">
+    <table mat-table [dataSource]="secondDataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="accountType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Account Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.accountType}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="accountNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Account Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.accountNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="branchAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Branch Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.branchAddress}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ifscCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Ifsc Code </th>
+        <td mat-cell *matCellDef="let element"> {{element.ifscCode}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="secondDisplayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: secondDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[1, 10, 15]" 
+    showFirstLastButtons
+     style="margin-right: 18%;margin-bottom: 0%;margin-top: -2%;">
+    </mat-paginator>
+  </div>
+  
+
+  <div class="wrapper">
+    <table mat-table [dataSource]="thirdDataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Currency </th>
+        <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="allBankAccount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Bank Account </th>
+        <td mat-cell *matCellDef="let element"> {{element.allBankAccount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="allDepositAccount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Deposit Account </th>
+        <td mat-cell *matCellDef="let element"> {{element.allDepositAccount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="allDematAccount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Demat Account </th>
+        <td mat-cell *matCellDef="let element"> {{element.allDematAccount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="allLoanAccount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell">  All Loan Account </th>
+        <td mat-cell *matCellDef="let element"> {{element.allDematAccount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="allCreditCardAccount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell">  All Credit Card Account </th>
+        <td mat-cell *matCellDef="let element"> {{element.allCreditCardAccount}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="thirdDisplayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: thirdDisplayedColumns;"></tr>
+    </table>
+  </div>
+
+  
+    
+  
+
+ 
