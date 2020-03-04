@@ -1,0 +1,167 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
+
+<mdb-navbar SideClass="navbar navbar-expand navbar-dark indigo">
+        <nav class="navbar navbar-expand navbar-dark primary-color" 
+        style="background-color:bisque; box-shadow: none !important;">
+    <links style="height: 50px;" >
+       <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                 mdbWavesEffect style="color: black;">My Accounts<span class="caret" ></span></a>
+<div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
+<a class="dropdown-item waves-light" mdbWavesEffect href="/accountSummary">Account Summary</a>
+<a class="dropdown-item waves-light" mdbWavesEffect href="/viewStatement">View Statement</a>
+<a class="dropdown-item waves-light" mdbWavesEffect href="#">Bank Accounts</a>
+<a class="dropdown-item waves-light" mdbWavesEffect href="#">Credit Cards</a>
+<a class="dropdown-item waves-light" mdbWavesEffect href="#">PayLater</a>
+</div>
+</li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+<a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+ mdbWavesEffect style="color: black;">
+                Payments & Transfer<span class="caret"></span></a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Action</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Another action</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Something else here</a>
+                    <div class="divider dropdown-divider"></div>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#" >Separated link</a>
+                </div>
+            </li>
+
+
+            <li class="nav-item dropdown" dropdown>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                     mdbWavesEffect style="color: black;">
+                                    Customer Serivce<span class="caret"></span></a>
+                                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Upudate Address</a>
+                                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Update Customer</a>
+                                        <a class="dropdown-item waves-light" mdbWavesEffect href="#">Update Email</a>
+                                       </div>
+                                </li>
+                    
+
+        </ul>
+        <!-- Links -->
+        
+    </links>
+    <!-- Collapsible content -->
+</nav>
+</mdb-navbar>
+
+
+
+
+<div id="mainDiv" style=" padding-top: 2%;padding-right: 0%;padding-left: 0%;margin: 0%;">
+  <app-alert></app-alert>
+
+  <h2>
+    <p style="text-align:center;padding-right: 16%;"><u>View Account Summary</u></p>
+  </h2>
+
+  <div>
+    <b><label for="acct" style="text-align:center; padding-left: 28%;">I Want To See My:</label></b>
+    
+    <mat-form-field class="dropDown">
+      <mat-select [(value)]="selected">
+        <mat-option value="1">Bank Account</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="btn btn-outline-primary" type="button" (click)="clickEvent()" style="width: 8%;">Go</button>
+  </div>
+</div>
+
+<!-- <div class="wrapper">
+  <table mat-table [dataSource]="firstDataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="totalDebitSum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Total DebitSum </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalDebitSum}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalCreditSum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Total CreditSum </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalCreditSum}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="availableBalance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Available balance </th>
+      <td mat-cell *matCellDef="let element"> {{element.availableBalance}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="firstDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: firstDisplayedColumns;"></tr>
+  </table>
+</div> -->
+
+<div class="wrapper">
+  <table mat-table [dataSource]="secondDataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="accountType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Account Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.accountType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accountNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Account Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.accountNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branchAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Branch Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.branchAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ifscCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Ifsc Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.ifscCode}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="secondDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: secondDisplayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[1, 10, 15]" showFirstLastButtons
+    style="margin-right: 18%;margin-bottom: 0%;margin-top: -2%;">
+  </mat-paginator>
+</div>
+
+
+<div class="wrapper">
+  <table mat-table [dataSource]="thirdDataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="currency">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> Currency </th>
+      <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="allBankAccount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Bank Account </th>
+      <td mat-cell *matCellDef="let element"> {{element.allBankAccount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="allDepositAccount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Deposit Account </th>
+      <td mat-cell *matCellDef="let element"> {{element.allDepositAccount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="allDematAccount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Demat Account </th>
+      <td mat-cell *matCellDef="let element"> {{element.allDematAccount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="allLoanAccount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Loan Account </th>
+      <td mat-cell *matCellDef="let element"> {{element.allDematAccount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="allCreditCardAccount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerCell"> All Credit Card Account </th>
+      <td mat-cell *matCellDef="let element"> {{element.allCreditCardAccount}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="thirdDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: thirdDisplayedColumns;"></tr>
+  </table>
+</div>
