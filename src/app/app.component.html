@@ -19,6 +19,7 @@
 <!--   <a class="nav-item nav-link" (click)="logout()" style="margin-left: 85%;color: black;">Logout</a>&ndash;&gt;-->
 <!--    </div>-->
 <!--    </nav>-->
+<app-navbar *ngIf="currentUser"></app-navbar>
 <router-outlet></router-outlet>
 <footer class="page-footer font-small blue pt-1">
             TEK BANK powered by TGS © 2020 Copyright

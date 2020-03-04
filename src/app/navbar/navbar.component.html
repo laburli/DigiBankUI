@@ -20,11 +20,11 @@
     </i>
     SendMoney
   </a>
-  <a mat-button routerLink="/PayBills">
+  <a mat-button routerLink="/AccountSummary">
     <i class="material-icons orange">
       post_add
     </i>
-    PayBills
+    AccountSummary
   </a>
   <a mat-button routerLink="/OpenWish">
     <i class="material-icons orange">
@@ -42,7 +42,7 @@
     <button mat-menu-item>Update Customer</button>
   </mat-menu>
   <div class="end">
-    Welcome, {{currentUser.firstName}}:{{currentUser.id}}
+    Welcome, {{currentUser.firstName}}:{{currentUser.customerId}}
     <a mat-button (click)="logout()">
       <i class="material-icons orange">
         track_changes
@@ -51,4 +51,4 @@
   </div>
   </mat-toolbar>
 
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->

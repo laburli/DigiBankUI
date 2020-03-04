@@ -15,6 +15,7 @@ import{RechargeNowComponent} from './navbar/recharge-now/recharge-now.component'
 import{SendMoneyComponent} from './navbar/send-money/send-money.component';
 import{PayMoneyComponent} from './navbar/pay-money/pay-money.component';
 import{OpenWishComponent} from './navbar/open-wish/open-wish.component';
+import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 
 
 
@@ -33,7 +34,7 @@ const routes: Route[] = [
         {path:'banking', component:BankingComponent} ,
               {path:'RechargeNow', component:RechargeNowComponent},
               {path:'SendMoney',component: SendMoneyComponent},
-              {path:'PayBills',component: PayMoneyComponent},
+              {path:'AccountSummary',component: AccountSummaryComponentComponent},
               {path:'OpenWish',component: OpenWishComponent},
 
 

@@ -22,6 +22,7 @@ export class AppComponent {
   private authenticationService: AuthenticationService
   ) {
   this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  console.log("CurrentUser:----------"+JSON.stringify(this.currentUser));
   }
   
   logout() {

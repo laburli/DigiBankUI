@@ -38,6 +38,8 @@ import { RechargeNowComponent } from './navbar/recharge-now/recharge-now.compone
 import { SendMoneyComponent } from './navbar/send-money/send-money.component';
 import { PayMoneyComponent } from './navbar/pay-money/pay-money.component';
 import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 
 
 @NgModule({
@@ -62,6 +64,7 @@ import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
     SendMoneyComponent,
     PayMoneyComponent,
     OpenWishComponent,
+    AccountSummaryComponentComponent
    ],
   imports: [
     BrowserModule,
@@ -72,7 +75,15 @@ import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     DemoMaterialModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+        backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+        backdropBorderRadius: '4px',
+        primaryColour: '#ffffff', 
+        secondaryColour: '#ffffff', 
+        tertiaryColour: '#ffffff'
+    }),
    ],
   providers: [
     //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -80,7 +91,6 @@ import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
     fakeBackendProvider,StatementService
   ],
   bootstrap: [AppComponent],
-
 })
 
 export class AppModule {
