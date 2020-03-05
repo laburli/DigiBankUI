@@ -9,5 +9,5 @@ export class User {
   lastName: string;
   token: string;
   customer: Customer;
-  account: Account;
+  account: Account[];
 }

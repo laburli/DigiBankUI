@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { formatDate } from "@angular/common";
 import { CreditDebitRequestDTO } from "../CreditDebitRequestDTO";
+import { environment } from "./../../environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -21,7 +22,8 @@ export class ApiServiceService {
     const locale = "en-US";
 
     return this.http.post(
-      "http://localhost:8080/transaction/viewCreditDebitSum",
+      `${environment.transactionServiceURL}` +
+        "/transaction/viewCreditDebitSum",
       {
         customerId: creditDebitRequestDTO.customerId,
         startDate: formatDate(creditDebitRequestDTO.startDate, format, locale),
@@ -31,19 +33,14 @@ export class ApiServiceService {
   }
 
   getAvailableBalance(accNum: string) {
-    let appHeader = new HttpHeaders();
-    appHeader.append("Content-Type", "application/json");
-    appHeader.append("Access-Control-Allow-Origin", "http://localhost:8080");
-    appHeader.append("Access-Control-Allow-Credentials", "true");
     return this.http.get(
-      `http://localhost:8080/transaction/getBalance/${accNum}`,
-      { headers: appHeader }
+      `${environment.customerServiceURL}` + "/transaction/getBalance/${accNum}"
     );
   }
 
   getCustomerDetails(customerid: string): Observable<any> {
     return this.http.post(
-      `http://localhost:6060/customer-service/api/searchCustomer`,
+      `${environment.customerServiceURL}` + "/api/searchCustomer",
       {
         customerId: customerid
       }

@@ -188,6 +188,7 @@ export class CustomerComponent implements OnInit {
         this.customerForm.reset();
         this.successMessage = "Customer creation sucess";
         this.callUserService(data);
+        console.log(data);
       },
       error: err => {
         this.errorMessage = err.error.errorMessage;

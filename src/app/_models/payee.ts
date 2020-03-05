@@ -1,4 +1,5 @@
 export class Payee {
+  payeeId: number;
   customerId: string;
   name: string;
   nickName: string;
