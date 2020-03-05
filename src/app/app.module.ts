@@ -40,6 +40,8 @@ import { PayMoneyComponent } from './navbar/pay-money/pay-money.component';
 import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
+import { AddPayeeComponent } from './add-payee/add-payee.component';
+import { ViewPayeeComponent } from './view-payee/view-payee.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { AccountSummaryComponentComponent } from './account-summary-component/ac
     SendMoneyComponent,
     PayMoneyComponent,
     OpenWishComponent,
-    AccountSummaryComponentComponent
+    AccountSummaryComponentComponent,
+    AddPayeeComponent,
+    ViewPayeeComponent
    ],
   imports: [
     BrowserModule,

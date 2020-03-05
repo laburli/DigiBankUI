@@ -1,0 +1,22 @@
+
+button, input{
+    border-radius: 30px;
+}
+
+td, th{
+vertical-align: middle;
+align-content: center;
+text-align: center;
+padding: 0px 20px;
+}
+
+mdb-card-body{
+    overflow: auto; 
+    text-align: justify;
+     max-height: 450px; 
+     min-width: 250px;
+}
+
+.modal-dialog{
+    min-width: 800px;
+}
