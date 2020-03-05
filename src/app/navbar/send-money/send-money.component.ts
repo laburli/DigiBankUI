@@ -31,7 +31,7 @@ export class SendMoneyComponent implements OnInit {
   payeeCtrl: FormControl;
   filteredPayees: Observable<any[]>;
   txnForm: FormGroup;
-  txnUrl = "http://localhost:8090/transaction/";
+  txnUrl = `${environment.transactionServiceURL}` + "/transaction/";
   accountDetails: any[];
 
   constructor(
