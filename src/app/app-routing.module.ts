@@ -16,6 +16,8 @@ import{SendMoneyComponent} from './navbar/send-money/send-money.component';
 import{PayMoneyComponent} from './navbar/pay-money/pay-money.component';
 import{OpenWishComponent} from './navbar/open-wish/open-wish.component';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
+import { ViewPayeeComponent } from './view-payee/view-payee.component';
+import { AddPayeeComponent } from './add-payee/add-payee.component';
 
 
 
@@ -36,6 +38,8 @@ const routes: Route[] = [
               {path:'SendMoney',component: SendMoneyComponent},
               {path:'AccountSummary',component: AccountSummaryComponentComponent},
               {path:'OpenWish',component: OpenWishComponent},
+              { path: 'payeeList', component: ViewPayeeComponent },
+              { path: 'addPayee', component: AddPayeeComponent }
 
 
 ];

@@ -1,0 +1,158 @@
+<div class="container" style="padding-top: 15px;">
+  <mdb-card>
+
+    <mdb-card-header class="info-color white-text text-center">
+      <h5>
+        <strong>Payees</strong>
+      </h5>
+    </mdb-card-header>
+
+    <!--Card content-->
+    <mdb-card-body class="px-lg-7">
+      <div *ngIf="payees" class="container">
+        <table mdbTable responsive="true">
+          <thead>
+            <tr>
+              <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payee of payees; let i = index">
+              <th scope="row"> {{i+1}} </th>
+              <td>
+                {{ payee.payeeStatus }}
+              </td>
+              <td>
+                <mdb-card>
+                  <mdb-card-body>
+                    <mdb-card-title>
+                      <h4>{{ payee.name }}</h4>
+                    </mdb-card-title>
+                    <mdb-card-text>
+                      <br>
+                      <h5> {{ payee.payeeAccountNumber }}</h5>
+                      <br>
+                      {{ payee.payeeBankName }} , {{ payee.payeeBankCity }}
+                    </mdb-card-text>
+                  </mdb-card-body>
+                </mdb-card>
+              </td>
+              <td>
+                <button mdbBtn type="button" color="warning" outline="true" mdbWavesEffect data-toggle="modal"
+                  (click)="populateEditForm(payee.payeeId); frame.show()">Modify</button>
+              </td>
+              <td>
+                <button mdbBtn type="button" color="danger" outline="true" mdbWavesEffect
+                  (click)="onClickDelete(payee.payeeId, payee.name);">Delete</button>
+              </td>
+              <td>
+                <button mdbBtn type="button" color="info" outline="true" mdbWavesEffect
+                  (click)="onClickActivate(payee.payeeId, payee.name);"
+                  *ngIf="activateButton(payee.payeeStatus)">Activate</button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Edit Payee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form novalidate (ngSubmit)="updatePayeeOnClick()" [formGroup]="payeeForm" class="form-horizontal">
+          <div class="form-group row">
+            <label for="name" class="col">Payee Name
+              <input type="text" class="form-control col" name="name" id="name" pattern="^[A-Z][a-zA-Z. ]+$"
+                formControlName="name" required [ngClass]="{'is-invalid': (payeeForm.get('name').touched ||
+            payeeForm.get('name').dirty) && !payeeForm.get('name').valid }" />
+              <div [hidden]="payeeForm.get('name').valid || payeeForm.get('name').pristine"
+                class="alert alert-danger col">
+                Please Enter Payee Name
+              </div>
+            </label>
+            <label for="nickName" class="col">Nick Name
+              <input type="text" class="form-control col" name="nickName" id="nickName" formControlName="nickName"
+                required [ngClass]="{'is-invalid': (payeeForm.get('nickName').touched ||
+            payeeForm.get('nickName').dirty) && !payeeForm.get('nickName').valid }" />
+              <div [hidden]="payeeForm.get('nickName').valid || payeeForm.get('nickName').pristine"
+                class="alert alert-danger col">
+                NickName of the Payee is required
+              </div>
+            </label>
+          </div>
+          <div class="form-group row">
+            <label for="payeeAccountNumber" class="col">Account Number
+              <input type="text" class="form-control col" name="payeeAccountNumber" id="payeeAccountNumber"
+                formControlName="payeeAccountNumber" required [ngClass]="{'is-invalid': (payeeForm.get('payeeAccountNumber').touched ||
+            payeeForm.get('payeeAccountNumber').dirty) && !payeeForm.get('payeeAccountNumber').valid }" />
+              <div [hidden]="payeeForm.get('payeeAccountNumber').valid || payeeForm.get('payeeAccountNumber').pristine"
+                class="alert alert-danger col">
+                Payee Account Number is required
+              </div>
+            </label>
+            <label for="payeeBankIFSC" class="col">Payee Bank IFSC
+              <input type="text" class="form-control col" name="payeeBankIFSC" id="payeeBankIFSC"
+                pattern="^[A-Za-z]{4}0[A-Z0-9a-z]{6}$" formControlName="payeeBankIFSC" required [ngClass]="{'is-invalid': (payeeForm.get('payeeBankIFSC').touched ||
+            payeeForm.get('payeeBankIFSC').dirty) && !payeeForm.get('payeeBankIFSC').valid }" />
+              <div [hidden]="payeeForm.get('payeeBankIFSC').valid || payeeForm.get('payeeBankIFSC').pristine"
+                class="alert alert-danger col">
+                Please Enter Correct IFSC Code
+              </div>
+            </label>
+          </div>
+          <div class="form-group row">
+            <label for="payeeBankName" class="col">Payee Bank Name
+              <input type="text" class="form-control col" name="payeeBankName" id="payeeBankName"
+                formControlName="payeeBankName" required [ngClass]="{'is-invalid': (payeeForm.get('payeeBankName').touched ||
+            payeeForm.get('payeeBankName').dirty) && !payeeForm.get('payeeBankName').valid }" />
+              <div [hidden]="payeeForm.get('payeeBankName').valid || payeeForm.get('payeeBankName').pristine"
+                class="alert alert-danger col">
+                Name of the Bank is required
+              </div>
+            </label>
+            <label for="payeeBankCity" class="col">Payee Bank City
+              <input type="text" class="form-control col" name="payeeBankCity" id="payeeBankCity"
+                formControlName="payeeBankCity" required [ngClass]="{'is-invalid': (payeeForm.get('payeeBankCity').touched ||
+            payeeForm.get('payeeBankCity').dirty) && !payeeForm.get('payeeBankCity').valid }" />
+              <div [hidden]="payeeForm.get('payeeBankCity').valid || payeeForm.get('payeeBankCity').pristine"
+                class="alert alert-danger col">
+                City Name of the Bank is required
+              </div>
+            </label>
+          </div>
+          <div class="form-group row">
+            <label for="payeeBankAddress" class="col">Payee Bank Address
+              <input type="text" class="form-control col" name="payeeBankAddress" id="payeeBankAddress"
+                formControlName="payeeBankAddress" required [ngClass]="{'is-invalid': (payeeForm.get('payeeBankAddress').touched ||
+            payeeForm.get('payeeBankAddress').dirty) && !payeeForm.get('payeeBankAddress').valid }" />
+              <div [hidden]="payeeForm.get('payeeBankAddress').valid || payeeForm.get('payeeBankAddress').pristine"
+                class="alert alert-danger col">
+                Address of the Bank is required
+              </div>
+            </label>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="submit" [disabled]="!payeeForm.valid"
+          [title]="payeeForm.valid ? 'Save your entered data' : 'Disabled until all the fields are filled'"
+          class="btn btn-success col-sm-2" (click)="updatePayeeOnClick()">Submit</button>
+        <div style="padding: 10px;"></div>
+        <button type="button" class="btn btn-warning col-sm-2" (click)="payeeForm.reset()">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>

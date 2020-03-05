@@ -7,17 +7,17 @@ import {
   ValidatorFn,
   FormArray
 } from "@angular/forms";
-import { first } from 'rxjs/operators';
+import { first } from "rxjs/operators";
 
 import { debounceTime } from "rxjs/operators";
 
 import { Customer } from "./customer";
 import { CustomerService } from "./customer.service";
 import { Router } from "@angular/router";
-import { UserService } from '../_services/user.service';
-import { User } from '../_models/User';
-import { AlertService } from '../_services/alert.service';
-import { AuthenticationService } from '../_services/authentication.service';
+import { UserService } from "../_services/user.service";
+import { User } from "../_models/User";
+import { AlertService } from "../_services/alert.service";
+import { AuthenticationService } from "../_services/authentication.service";
 
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const emailControl = c.get("email").get("emailAddress");
@@ -43,7 +43,6 @@ export class CustomerComponent implements OnInit {
   loading = false;
   submitted = false;
   private newUser = new User();
-  
 
   get addresses(): FormArray {
     return this.customerForm.get("address") as FormArray;
@@ -67,11 +66,11 @@ export class CustomerComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,
     private router: Router,
-    private authenticationService: AuthenticationService,
+    private authenticationService: AuthenticationService
   ) {
-     // redirect to home if already logged in
-     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/banking']);
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(["/banking"]);
     }
   }
 
@@ -189,6 +188,7 @@ export class CustomerComponent implements OnInit {
         this.customerForm.reset();
         this.successMessage = "Customer creation sucess";
         this.callUserService(data);
+        console.log(data);
       },
       error: err => {
         this.errorMessage = err.error.errorMessage;
@@ -198,20 +198,22 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  callUserService(customer:Customer){
+  callUserService(customer: Customer) {
     this.newUser.firstName = customer.customerName;
     this.newUser.lastName = customer.lastName;
     this.newUser.password = "admin";
     this.newUser.username = customer.customerName;
-    this.newUser.customerId=customer.customerId;
-    console.log("customer::::"+JSON.stringify(customer));
+    this.newUser.customerId = customer.customerId;
+    this.newUser.customer = customer;
+    console.log("customer::::" + JSON.stringify(customer));
+    console.log("user customer::::" + JSON.stringify(this.newUser.customer));
     this.userService
       .register(this.newUser)
       .pipe(first())
       .subscribe(
         data => {
-           this.alertService.success("Registration successful", true);
-           this.router.navigate(["/login"]);
+          this.alertService.success("Registration successful", true);
+          this.router.navigate(["/login"]);
           console.log("user info:" + data);
         },
         error => {

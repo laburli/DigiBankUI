@@ -1,0 +1,14 @@
+{
+    "/*": {
+        "target": "http://localhost:8090",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "customer-service/api/*": {
+        "target": "http://localhost:6060",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
