@@ -1,80 +1,72 @@
-
 <div class="custom">
-<mat-card class="card">
+    <mat-card class="card">
+        <mat-toolbar>
+            <a mat-button routerLink="/payeeList">
+                <i class="material-icons orange">
+          account_circle
+        </i> My Payees
+            </a>
 
-<mat-toolbar >
-  <a mat-button routerLink="/payeeList">
-    <i class="material-icons orange">
-      account_circle
-    </i>
-    My Payees
-  </a>
+            <a mat-button>
+                <i class="material-icons orange">
+          account_balance_wallet
+        </i> Own Accounts & Pockets
+            </a>
 
-  <a mat-button>
-    <i class="material-icons orange">
-      account_balance_wallet
-    </i>
-      Own Accounts
-      & Pockets
-  </a>
+            <a mat-button color="white">
+                <i class="material-icons orange">
+          mobile_screen_share
+        </i> Mobile(Via MMID)
+            </a>
+            <a mat-button>
+                <i class="material-icons orange">
+          public
+        </i> Overseas Transfer
+            </a>
+            <a mat-button>
+                <i class="material-icons orange">
+          account_balance_wallet
+        </i> Request Money from Overseas
+            </a>
+        </mat-toolbar>
+        <div class="space">
+            <p>
+                Doing a one time transfer?Use quick transfer upto 10000.No need to add a payee. <a href="Click Here" style="color:orange">Click Here</a>
+            </p>
+        </div>
+        <div class="search">
+            <div class="search-container">
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <input matInput class="payeeSearchForm" (click)="observeChanges()" placeholder="Search Payee by Name or Account Number" aria-label="PayeeList" [matAutocomplete]="auto" [formControl]="payeeCtrl" />
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let payee of filteredPayees | async" [value]="payee.name">
+                                <img style="vertical-align:middle;" aria-hidden src="{{ payee.flag }}" height="25" />
+                                <span>Payee Name: {{ payee.name }}</span> |
+                                <small>Account Number: {{ payee.payeeAccountNumber }}</small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="texts">
+                <p style="color:orange">OR</p>
+            </div>
+            <a routerLink="/addPayee">
+                <button mat-raised-button matTooltip="Info about the action" aria-label="Button that displays a tooltip when focused or hovered over">
+          <i class="material-icons orange">
+            add
+          </i>
+          Add New Payee
+        </button>
+            </a>
+        </div>
+    </mat-card>
+</div>
 
-  <a mat-button color="white">
-    <i class="material-icons orange">
-      mobile_screen_share
-    </i>
-    Mobile(Via MMID)
-  </a>
-  <a mat-button>
-    <i class="material-icons orange">
-      public
-    </i>
-    Overseas Transfer
-  </a>
-  <a mat-button>
-    <i class="material-icons orange">
-      account_balance_wallet
-    </i>
-    Request Money from Overseas
-  </a>
-</mat-toolbar>
-  <div class="space">
-  <p>Doing a one time transfer?Use quick transfer upto 10000.No need to add a payee. <a href="Click Here" style="color:orange">Click Here</a></p>
-  </div>
-  <div class ="search">
-  <button mat-raised-button
-          matTooltip="Info about the action"
-          aria-label="Button that displays a tooltip when focused or hovered over">
-    <i class="material-icons orange">
-      search
-    </i>
-    Search For Payee By Name, Account  or  Mobile Number
-    <i class="material-icons orange">
-      keyboard_arrow_down
-    </i>
-  </button>
-    <div class="texts">
-    <p style="color:orange" >OR</p>
+<div class="image">
+    <img src="../../assets/images/transfermoney.png" />
+    <div class="text">
+        <p>No Transactions Yet</p>
     </div>
-    <a routerLink="/addPayee">
-    <button mat-raised-button
-            matTooltip="Info about the action"
-            aria-label="Button that displays a tooltip when focused or hovered over">
-      <i class="material-icons orange">
-        add
-      </i>
-       Add New Payee
-    </button>
-  </a>
-
 </div>
-</mat-card>
-</div>
-
-<div class =image>
-  <img src = "../../assets/images/transfermoney.png">
-  <div class="text">
-  <p>No Transactions Yet</p>
-  </div>
-</div>
-
-
