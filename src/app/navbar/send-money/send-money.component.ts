@@ -15,6 +15,7 @@ import { User } from "./../../_models/User";
 import { startWith, map } from "rxjs/operators";
 import { environment } from "./../../../environments/environment";
 import { PayeeService } from "./../../_services/payee.service";
+import { error } from "protractor";
 
 @Component({
   selector: "app-send-money",
@@ -61,6 +62,13 @@ export class SendMoneyComponent implements OnInit {
         console.log(err);
       }
     );
+
+    this.apiService.getCustomerDetails(this.cid).subscribe(customer => {
+      console.log(customer);
+      this.accountDetails = customer[0].account;
+      console.log(this.accountDetails);
+    });
+
     this.txnForm = this.fb.group({
       customerId: ["*", Validators.required],
       customerAccountNumber: ["*", Validators.required],
@@ -84,14 +92,6 @@ export class SendMoneyComponent implements OnInit {
         payee.name.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
         payee.payeeAccountNumber.toLowerCase().indexOf(name.toLowerCase()) === 0
     );
-  }
-
-  getAccounts() {
-    this.apiService.getCustomerDetails(this.cid).subscribe(customer => {
-      console.log(customer);
-      this.accountDetails = customer["account"];
-      console.log(this.accountDetails);
-    });
   }
 
   saveThisPayee(pid: number, pname: string) {
@@ -123,11 +123,12 @@ export class SendMoneyComponent implements OnInit {
     console.log(this.txnForm.value);
     this.httpObj.post(this.txnUrl, this.txnForm.value).subscribe({
       next: data => {
-        this.successMessage = "Transaction successfull";
+        this.successMessage = "Transaction Successfull";
         console.log(data);
       },
       error: err => {
-        this.errorMessage = err;
+        console.log(JSON.stringify(err));
+        this.errorMessage = err.error.Message;
         console.log(this.errorMessage);
       }
     });

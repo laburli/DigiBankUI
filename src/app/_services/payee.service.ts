@@ -16,19 +16,9 @@ export class PayeeService {
     return this.http.get<Payee[]>(this.payeeBaseURL + cid);
   }
 
-  addPayee(p: Payee) {
+  addPayee(p: Payee): Observable<Payee> {
     console.log("Inside Add payee method in Service", p);
-    return this.http.post<Payee>(this.payeeBaseURL, p).subscribe(
-      data => {
-        console.log(data);
-        console.log(data["name"]);
-        alert("Successfully added the Payee: " + data["name"]);
-      },
-      err => {
-        console.log(err);
-        console.log("inside error method");
-      }
-    );
+    return this.http.post<Payee>(this.payeeBaseURL, p);
   }
 
   activatePayee(pid: number) {

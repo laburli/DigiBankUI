@@ -3,45 +3,42 @@
         <mat-toolbar>
             <a mat-button routerLink="/payeeList">
                 <i class="material-icons orange">
-                    account_circle
-                </i> My Payees
+          account_circle
+        </i> My Payees
             </a>
 
             <a mat-button>
                 <i class="material-icons orange">
-                    account_balance_wallet
-                </i> Own Accounts & Pockets
+          account_balance_wallet
+        </i> Own Accounts & Pockets
             </a>
 
             <a mat-button color="white">
                 <i class="material-icons orange">
-                    mobile_screen_share
-                </i> Mobile(Via MMID)
+          mobile_screen_share
+        </i> Mobile(Via MMID)
             </a>
             <a mat-button>
                 <i class="material-icons orange">
-                    public
-                </i> Overseas Transfer
+          public
+        </i> Overseas Transfer
             </a>
             <a mat-button>
                 <i class="material-icons orange">
-                    account_balance_wallet
-                </i> Request Money from Overseas
+          account_balance_wallet
+        </i> Request Money from Overseas
             </a>
         </mat-toolbar>
         <div class="space">
             <p>
-                Doing a one time transfer?Use quick transfer upto 10000.No need to add a payee. <a href="Click Here"
-                    style="color:orange">Click Here</a>
+                Doing a one time transfer?Use quick transfer upto 10000.No need to add a payee. <a href="Click Here" style="color:orange">Click Here</a>
             </p>
         </div>
         <div class="search">
             <div class="search-container">
                 <form class="example-form">
                     <mat-form-field class="example-full-width">
-                        <input matInput class="payeeSearchForm" (click)="observeChanges()"
-                            placeholder="Search Payee by Name or Account Number" aria-label="PayeeList"
-                            [matAutocomplete]="auto" [formControl]="payeeCtrl" />
+                        <input matInput class="payeeSearchForm" (click)="observeChanges()" placeholder="Search Payee by Name or Account Number" aria-label="PayeeList" [matAutocomplete]="auto" [formControl]="payeeCtrl" />
                         <mat-autocomplete #auto="matAutocomplete">
                             <mat-option *ngFor="let payee of filteredPayees | async" [value]="payee.name">
                                 <div (click)="saveThisPayee(payee.payeeId, payee.name)">
@@ -57,13 +54,12 @@
                 <p style="color:orange ">OR</p>
             </div>
             <a routerLink="/addPayee">
-                <button mat-raised-button matTooltip="Info about the action "
-                    aria-label="Button that displays a tooltip when focused or hovered over ">
-                    <i class="material-icons orange ">
-                        add
-                    </i>
-                    Add New Payee
-                </button>
+                <button mat-raised-button matTooltip="Info about the action " aria-label="Button that displays a tooltip when focused or hovered over ">
+          <i class="material-icons orange ">
+            add
+          </i>
+          Add New Payee
+        </button>
             </a>
         </div>
     </mat-card>
@@ -96,43 +92,67 @@
             <form novalidate (ngSubmit)="transaction(); txnForm.reset()" [formGroup]="txnForm">
                 <div class="form-group row">
                     <label for="customerAccountNumber" class="col">From Account
-                        <input type="text" class="form-control col" name="customerAccountNumber"
-                            id="customerAccountNumber" formControlName="customerAccountNumber" required [ngClass]="{
-                'is-invalid':
-                  (txnForm.get('customerAccountNumber').touched ||
-                    txnForm.get('customerAccountNumber').dirty) &&
-                  !txnForm.get('customerAccountNumber').valid
-              }" />
-                        <div [hidden]="
+
+            <mat-form-field>
+              <mat-select
+                placeholder="Select user account"
+                class="form-control col"
+                name="customerAccountNumber"
+                id="customerAccountNumber"
+                formControlName="customerAccountNumber"
+              >
+                <mat-option
+                  *ngFor="let account of accountDetails"
+                  [value]="account.accountNumber"
+                  >{{ account.accountNumber }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+
+            <div
+              [hidden]="
                 txnForm.get('customerAccountNumber').valid ||
                 txnForm.get('customerAccountNumber').pristine
-              " class="alert alert-danger col">
-                            From Account
-                        </div>
-                    </label>
+              "
+              class="alert alert-danger col"
+            >
+              Enter Account number
+            </div>
+          </label>
 
                     <label for="customerAccountNumber" class="col">To:
-                        <strong>
-                            {{ pname }}
-                        </strong>
-                    </label>
+            <strong>
+              {{ pname }}
+            </strong>
+          </label>
                 </div>
                 <div class="form-group row">
                     <label for="transactionAmount" class="col-6">Transaction Amount
-                        <input type="text" class="form-control col" name="transactionAmount" id="transactionAmount"
-                            formControlName="transactionAmount" required [ngClass]="{
+
+            <input
+              type="text"
+              class="form-control col"
+              name="transactionAmount"
+              id="transactionAmount"
+              formControlName="transactionAmount"
+              required
+              [ngClass]="{
                 'is-invalid':
                   (txnForm.get('transactionAmount').touched ||
                     txnForm.get('transactionAmount').dirty) &&
                   !txnForm.get('transactionAmount').valid
-              }" />
-                        <div [hidden]="
+              }"
+            />
+            <div
+              [hidden]="
                 txnForm.get('transactionAmount').valid ||
                 txnForm.get('transactionAmount').pristine
-              " class="alert alert-danger col">
-                            NickName of the Payee is required
-                        </div>
-                    </label>
+              "
+              class="alert alert-danger col"
+            >
+              Please enter transfer amount
+            </div>
+          </label>
                 </div>
 
                 <div class="form-group row">
@@ -143,8 +163,8 @@
                   ? 'Save your entered data'
                   : 'Disabled until all the fields are filled'
               " (click)="transaction()">
-                            Send Money
-                        </button>
+              Send Money
+            </button>
                     </div>
                     <div class="col"></div>
                 </div>
