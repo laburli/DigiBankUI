@@ -8,7 +8,9 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { error } from 'protractor';
 import { User } from '../_models/User';
 import { AuthenticationService } from '../_services/authentication.service';
-
+import { environment } from "./../../environments/environment";
+import { CreditDebitRequestDTO } from '../CreditDebitRequestDTO';
+import { ApiServiceService } from '../_services/api-service.service';
 @Component({
   selector: 'statement-form',
   templateUrl: './statement-form.component.html',
@@ -29,11 +31,12 @@ export class StatementFormComponent implements OnInit {
   errorMessage: any;
   disableDate: boolean;
   currentUser: User;
-  
-  constructor(private svc: StatementService, private http: HttpClient, private route: ActivatedRoute,  private authenticationService: AuthenticationService) {
+  creditDebitRequestDTO = new CreditDebitRequestDTO();;
+  constructor(private svc: StatementService, private http: HttpClient, private route: ActivatedRoute,  private authenticationService: AuthenticationService, private service: ApiServiceService) {
     this.maxDate = new Date();
     this.currentUser = this.authenticationService.currentUserValue;
     this.custId = this.authenticationService.currentUserValue.customerId;
+
   }
 
   ngOnInit(): void {
@@ -73,15 +76,15 @@ export class StatementFormComponent implements OnInit {
     }
     const format = 'yyyy-MM-dd';
     const locale = 'en-US';
-    this.startDate = formatDate(this.myForm.get('startDate').value, format, locale);
-    this.endDate = formatDate(this.myForm.get('endDate').value, format, locale);
-    let obs = this.http.post('http://localhost:8080/transaction/viewStatement', {
-      "customerId": this.custId,
-      "startDate": formatDate(this.myForm.get('startDate').value, format, locale),
-      "endDate": formatDate(this.myForm.get('endDate').value, format, locale)
-    }).subscribe({
+    this.creditDebitRequestDTO.customerId =  this.custId;
+    this.creditDebitRequestDTO.startDate = formatDate(this.myForm.get('startDate').value, format, locale);
+    this.creditDebitRequestDTO.endDate = formatDate(this.myForm.get('endDate').value, format, locale);
+    console.log(JSON.stringify(this.creditDebitRequestDTO));
+    this.service.getViewStatement(this.creditDebitRequestDTO).subscribe({
       next: (data) => { this.tabledata = data },
-      error: err => { this.errorMessage = "There is no Transaction associated with your Customer Id:"+this.custId }
+      error: err => { 
+        this.errorMessage = "There is no Transaction associated with your Customer Id:"+this.custId 
+      }
     }
     );
   }

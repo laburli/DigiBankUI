@@ -46,4 +46,17 @@ export class ApiServiceService {
       }
     );
   }
+
+  getViewStatement( creditDebitRequestDTO: CreditDebitRequestDTO): Observable<any> {
+    const format = 'yyyy-MM-dd';
+    const locale = 'en-US';
+    return this.http.post(
+      `${environment.transactionServiceURL}` +'/transaction/viewStatement',
+      {
+        "customerId": creditDebitRequestDTO.customerId,
+        "startDate":creditDebitRequestDTO.startDate,
+        "endDate": creditDebitRequestDTO.endDate
+      }
+    );
+  }
 }
