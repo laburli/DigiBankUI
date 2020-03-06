@@ -5,12 +5,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from "@angular/common";
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { error } from 'protractor';
+import { error, Config } from 'protractor';
 import { User } from '../_models/User';
 import { AuthenticationService } from '../_services/authentication.service';
 import { environment } from "./../../environments/environment";
 import { CreditDebitRequestDTO } from '../CreditDebitRequestDTO';
 import { ApiServiceService } from '../_services/api-service.service';
+import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'statement-form',
   templateUrl: './statement-form.component.html',
@@ -80,13 +81,17 @@ export class StatementFormComponent implements OnInit {
     this.creditDebitRequestDTO.startDate = formatDate(this.myForm.get('startDate').value, format, locale);
     this.creditDebitRequestDTO.endDate = formatDate(this.myForm.get('endDate').value, format, locale);
     console.log(JSON.stringify(this.creditDebitRequestDTO));
-    this.service.getViewStatement(this.creditDebitRequestDTO).subscribe({
+   this.service.getViewStatement(this.creditDebitRequestDTO).subscribe(
+    {
       next: (data) => { this.tabledata = data },
       error: err => { 
-        this.errorMessage = "There is no Transaction associated with your Customer Id:"+this.custId 
+        this.errorMessage = err.error.Message;
       }
     }
+
+
     );
+ 
   }
 
 

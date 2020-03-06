@@ -43,8 +43,8 @@
         <table-component [dataSource]="tabledata"></table-component>
 </div>
 
-<div *ngIf="errorMessage" class="error">
-        {{errorMessage}} within searched dates
+<div *ngIf="errorMessage" class="alert alert-danger" style="margin: 3%;text-align: center;">
+        {{errorMessage}}
 </div>
 
 <router-outlet></router-outlet>
