@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost:4000",
-  transactionServiceURL: "http://localhost:8080",
-  customerServiceURL: "http://localhost:6060/customer-service"
+  transactionServiceURL: "http://localhost:8090",
+  customerServiceURL: "http://localhost:6060/customer-service",
+  otp: "admin"
 };
 
 /*

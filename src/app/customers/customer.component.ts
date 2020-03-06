@@ -18,6 +18,7 @@ import { UserService } from "../_services/user.service";
 import { User } from "../_models/User";
 import { AlertService } from "../_services/alert.service";
 import { AuthenticationService } from "../_services/authentication.service";
+import { environment } from "./../../environments/environment";
 
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const emailControl = c.get("email").get("emailAddress");
@@ -201,7 +202,7 @@ export class CustomerComponent implements OnInit {
   callUserService(customer: Customer) {
     this.newUser.firstName = customer.customerName;
     this.newUser.lastName = customer.lastName;
-    this.newUser.password = "admin";
+    this.newUser.password = `${environment.otp}`;
     this.newUser.username = customer.customerName;
     this.newUser.customerId = customer.customerId;
     this.newUser.customer = customer;
