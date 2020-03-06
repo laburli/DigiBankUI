@@ -7,8 +7,13 @@
       </h5>
     </mdb-card-header>
 
-    <!--Card content-->
     <mdb-card-body class="px-lg-7">
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
       <div *ngIf="payees" class="container">
         <table mdbTable responsive="true">
           <thead>
@@ -51,10 +56,12 @@
                   (click)="onClickActivate(payee.payeeId, payee.name);"
                   *ngIf="activateButton(payee.payeeStatus)">Activate</button>
               </td>
-
             </tr>
           </tbody>
         </table>
+        <button mdbBtn type="button" color="info" mdbWavesEffect routerLink="/SendMoney" style="margin: 2% 40%;">
+          Return
+        </button>
       </div>
     </mdb-card-body>
   </mdb-card>
@@ -144,7 +151,6 @@
             </label>
           </div>
         </form>
-
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="submit" [disabled]="!payeeForm.valid"

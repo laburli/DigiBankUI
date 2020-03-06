@@ -46,11 +46,9 @@ export class AddPayeeComponent implements OnInit {
       next: data => {
         this.payeeForm.reset();
         this.successMessage = "Payee added successfully";
-        console.log(data);
       },
       error: err => {
         this.errorMessage = err.Message;
-        console.log(this.errorMessage);
       }
     });
   }

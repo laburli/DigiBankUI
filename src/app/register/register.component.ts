@@ -9,13 +9,13 @@ import { UserService } from '../_services/user.service';
 import { AlertService } from '../_services/alert.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
+    registerForm: FormGroup;
     loading = false;
     submitted = false;
 
@@ -68,6 +68,4 @@ export class RegisterComponent implements OnInit {
                     this.loading = false;
                 });
     }
-
-
 }

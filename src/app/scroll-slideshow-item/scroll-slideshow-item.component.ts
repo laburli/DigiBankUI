@@ -41,7 +41,6 @@ export class ScrollSlideshowItemComponent implements OnInit {
     this.direction = prmDirection;
     this.enterInitPosition = this.direction * 50 + "%";
     this.exitPosition = this.direction * 50 + "%";
-    console.log("Show = " + this.show);
   }
 
   reset() {

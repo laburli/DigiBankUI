@@ -10,35 +10,28 @@ import { User } from './_models/User';
   styleUrls: ['./app.component.css']
 })
 
-
-
 export class AppComponent {
   title = 'tek-bank';
-  isNotLogged:boolean=false;
-  currentUser: User;
+  isNotLogged: boolean = false;
+  currentUser: User;
 
   constructor(
-  private router: Router,
-  private authenticationService: AuthenticationService
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
-  this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-  console.log("CurrentUser:----------"+JSON.stringify(this.currentUser));
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    console.log("CurrentUser:----------" + JSON.stringify(this.currentUser));
   }
-  
+
   logout() {
-  this.authenticationService.logout();
-  this.router.navigate(['/login']);
-  } 
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 
-  
-
-  openLogin(){
-    this.isNotLogged=false;
-    this.router.navigate(['login']);  
-    }
-  
-
-
+  openLogin() {
+    this.isNotLogged = false;
+    this.router.navigate(['login']);
+  }
 }
 
 

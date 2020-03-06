@@ -42,7 +42,6 @@ export class SendMoneyComponent implements OnInit {
     private apiService: ApiServiceService,
     private fb: FormBuilder
   ) {
-    console.log("constructor");
     this.payeeCtrl = new FormControl();
     this.authenticationService.currentUser.subscribe(
       x => (this.cid = x.customerId)
@@ -50,23 +49,17 @@ export class SendMoneyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("init");
-    console.log(this.payees);
     this.payeeService.getPayeeByCid(this.cid).subscribe(
       data => {
         this.payees = data;
-        console.log(this.payees);
       },
       err => {
         alert("Some Error Occurred!");
-        console.log(err);
       }
     );
 
     this.apiService.getCustomerDetails(this.cid).subscribe(customer => {
-      console.log(customer);
       this.accountDetails = customer[0].account;
-      console.log(this.accountDetails);
     });
 
     this.txnForm = this.fb.group({
@@ -76,7 +69,6 @@ export class SendMoneyComponent implements OnInit {
       transactionType: ["*", Validators.required],
       transactionAmount: [0.0, Validators.required]
     });
-    console.log(this.txnForm);
   }
 
   observeChanges() {
@@ -102,9 +94,7 @@ export class SendMoneyComponent implements OnInit {
 
     this.pid = pid;
     this.pname = pname;
-    // this.getAccounts();
     this.populateForm();
-    console.log("pid:" + this.pid + "pname:" + this.pname);
   }
 
   populateForm() {
@@ -115,21 +105,15 @@ export class SendMoneyComponent implements OnInit {
       transactionType: ["Debit", Validators.required],
       transactionAmount: [0.0, Validators.required]
     });
-
-    console.log(this.txnForm.value);
   }
 
   transaction() {
-    console.log(this.txnForm.value);
     this.httpObj.post(this.txnUrl, this.txnForm.value).subscribe({
       next: data => {
         this.successMessage = "Transaction Successfull";
-        console.log(data);
       },
       error: err => {
-        console.log(JSON.stringify(err));
         this.errorMessage = err.error.Message;
-        console.log(this.errorMessage);
       }
     });
   }

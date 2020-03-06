@@ -9,11 +9,11 @@ import { AuthenticationService } from './../_services/authentication.service';
   styleUrls: ['./banking.component.css']
 })
 export class BankingComponent implements OnInit {
-currentUser: User;
+  currentUser: User;
 
-  constructor(private authenticationService: AuthenticationService) {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    }
+  constructor(private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
 
   ngOnInit() {

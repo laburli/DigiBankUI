@@ -14,6 +14,8 @@ export class ViewPayeeComponent implements OnInit {
   cid: string;
   payeeForm: FormGroup;
   pid: number = 0;
+  successMessage: string;
+  errorMessage: any;
 
   constructor(private _http: PayeeService, private fb: FormBuilder, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.cid = x.customerId);
@@ -22,10 +24,8 @@ export class ViewPayeeComponent implements OnInit {
   ngOnInit(): void {
     this._http.getPayeeByCid(this.cid).subscribe(data => {
       this.payees = data
-      console.log(this.payees);
     }, err => {
       alert('Some Error Occurred!')
-      console.log(err)
     });
 
     this.payeeForm = this.fb.group({
@@ -38,7 +38,6 @@ export class ViewPayeeComponent implements OnInit {
       payeeBankCity: ['*', Validators.required],
       payeeAccountNumber: ['*', Validators.required]
     })
-    console.log(this.payeeForm.value);
   }
 
   activateButton(x: string) {
@@ -49,12 +48,13 @@ export class ViewPayeeComponent implements OnInit {
     if (confirm("Are you sure to Activate the Payee : " + pname)) {
       this._http.activatePayee(pid).subscribe(data => {
         if (data == "OK")
-          alert("Payee " + pname + " Activated! Now you can start transferring funds.")
-        window.location.reload();
-      }, err => {
-        alert('Some Error Occurred!')
-        console.log(err)
-      });
+          this.successMessage = "Payee " + pname + " Activated! Now you can start transferring funds.";
+        alert(this.successMessage);
+      },
+        err => {
+          this.errorMessage = err.Message;
+          alert(this.errorMessage);
+        });
 
     }
   }
@@ -63,17 +63,19 @@ export class ViewPayeeComponent implements OnInit {
     if (confirm("Are you sure to delete the Payee : " + pname)) {
       this._http.deletePayee(pid).subscribe(data => {
         if (data == "OK")
-          alert("Deleted the Payee : " + pname + " with ID : " + pid + " successfully!")
+          this.successMessage = "Deleted the Payee : " + pname + " with ID : " + pid + " successfully!";
+        alert(this.successMessage);
         window.location.reload();
-      }, err => {
-        alert('Some Error Occurred!')
-        console.log(err)
-      });
+      },
+        err => {
+          this.errorMessage = err.Message;
+          alert(this.errorMessage);
+        });
 
     }
   }
+  
   populateEditForm(pid: number) {
-    console.log('Inside Populate Edit Form');
     this._http.getPayeeByPID(pid).subscribe(
       data => {
         this.payeeForm = this.fb.group({
@@ -89,21 +91,19 @@ export class ViewPayeeComponent implements OnInit {
         this.pid = data['payeeId'];
       },
       err => {
-        alert('Some Error Occurred!')
-        console.log(err)
-      }
-    );
+        this.errorMessage = err.Message;
+        alert(this.errorMessage);
+      });
   }
 
   updatePayeeOnClick() {
     this._http.updatePayee(this.pid, this.payeeForm.value).subscribe(data => {
-      console.log(data['name'])
-      alert('Successfully Updated the Payee: ' + data['name'])
+      this.successMessage = "Successfully Updated the Payee: " + data['name'];
+      alert(this.successMessage);
       window.location.reload();
     }, err => {
-      alert('Some Error Occurred!')
-      console.log(err)
-    })
-
+      this.errorMessage = err.Message;
+      alert(this.errorMessage);
+    });
   }
 }

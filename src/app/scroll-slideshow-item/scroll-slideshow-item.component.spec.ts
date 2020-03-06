@@ -8,9 +8,9 @@ describe('ScrollSlideshowItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScrollSlideshowItemComponent ]
+      declarations: [ScrollSlideshowItemComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

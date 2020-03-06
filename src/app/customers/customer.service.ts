@@ -19,10 +19,9 @@ export class CustomerService {
   // private customer: Customer;
   private baseUrl = `${environment.customerServiceURL}` + "/api/";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   saveCustomer(customer: Customer): Observable<Customer> {
-    console.log("inside save before call" + customer);
     const url = this.baseUrl + "/save-customer-details";
     return this.http.post<Customer>(url, customer);
   }

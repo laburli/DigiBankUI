@@ -93,7 +93,6 @@ export class AccountSummaryComponentComponent implements OnInit {
   }
 
   getActuallApiCall() {
-    console.log("customerId:---" + this.custId);
     this.loading = true;
     this.alertService.clear();
     //  if(this.custId==null){
@@ -101,10 +100,8 @@ export class AccountSummaryComponentComponent implements OnInit {
     //  }
     this.apiService.getCustomerDetails(this.custId).subscribe(
       customer => {
-        console.log("customer:-----------" + JSON.stringify(customer));
         this.customerDetails = customer;
         this.acctDetails = this.customerDetails[0].account;
-
         this.branchName = this.acctDetails[0].branchName;
         this.branchCity = this.acctDetails[0].branchCity;
         this.branchState = this.acctDetails[0].branchState;

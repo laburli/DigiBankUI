@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-export class Transaction{
+export class Transaction {
   transactionId: any;
   transactionType: any;
-  availableBalance:any;
+  availableBalance: any;
   transactionAmount: any;
   payeeName: any;
   transactionTime: any;
@@ -19,14 +19,12 @@ const ELEMENT_DATA: Transaction[] = [];
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  displayedColumns: string[] = ['transactionId', 'transactionType', 'payeeName',  'transactionAmount', 'transactionTime' ,'availableBalance'];
-  
+  displayedColumns: string[] = ['transactionId', 'transactionType', 'payeeName', 'transactionAmount', 'transactionTime', 'availableBalance'];
+
   @Input()
-  dataSource ;
+  dataSource;
   constructor() { }
 
   ngOnInit(): void {
-
   }
-
 }

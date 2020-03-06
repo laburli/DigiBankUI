@@ -4,8 +4,9 @@
                 <label> From</label>
                 <mat-form-field class="date-picker">
                         <mat-label>Choose Start Date</mat-label>
-                        <input matInput [matDatepicker]="picker2" [max]="maxDate" formControlName="startDate" (dateInput)="addEvent('input', $event)"
-                                (dateChange)="addEvent('change', $event)" [disabled]="disableDate">
+                        <input matInput [matDatepicker]="picker2" [max]="maxDate" formControlName="startDate"
+                                (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)"
+                                [disabled]="disableDate">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
@@ -13,8 +14,9 @@
                 <label> To</label>
                 <mat-form-field class="date-picker">
                         <mat-label>Choose End Date</mat-label>
-                        <input matInput [matDatepicker]="picker1" [max]="maxDate" formControlName="endDate" (dateInput)="addEvent('input', $event)"
-                                (dateChange)="addEvent('change', $event)" [disabled]="disableDate">
+                        <input matInput [matDatepicker]="picker1" [max]="maxDate" formControlName="endDate"
+                                (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)"
+                                [disabled]="disableDate">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
@@ -24,7 +26,8 @@
                 <label> Months</label>
                 <mat-form-field class="dropDown">
                         <mat-label>Months</mat-label>
-                        <mat-select formControlName="monthsDD" (selectionChange)="onChange($event.value)" [disabled]="flagValue">
+                        <mat-select formControlName="monthsDD" (selectionChange)="onChange($event.value)"
+                                [disabled]="flagValue">
                                 <mat-option>None</mat-option>
                                 <mat-option value="1">1</mat-option>
                                 <mat-option value="3">3</mat-option>
@@ -39,7 +42,7 @@
 <div class="accountDetails">
         <label>Customer Id: </label> {{custId}}
 </div>
-<div *ngIf="tabledata" >
+<div *ngIf="tabledata">
         <table-component [dataSource]="tabledata"></table-component>
 </div>
 

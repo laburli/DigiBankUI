@@ -1,6 +1,6 @@
 <div class="slide-show-container" mouseWheel (mouseWheelUp)="onMouseWheelUpFunc()"
   (mouseWheelDown)="onMouseWheelDownFunc()">
   <scroll-slideshow-item *ngFor="let slide of slides ; let i = index">
-    <img [src]='slide' height="100%" width="100%"/>
+    <img [src]='slide' height="100%" width="100%" />
   </scroll-slideshow-item>
 </div>

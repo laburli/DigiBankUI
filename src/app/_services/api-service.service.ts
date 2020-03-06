@@ -11,7 +11,7 @@ import { environment } from "./../../environments/environment";
   providedIn: "root"
 })
 export class ApiServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getTotalDebitSum(
     creditDebitRequestDTO: CreditDebitRequestDTO
@@ -23,7 +23,7 @@ export class ApiServiceService {
 
     return this.http.post(
       `${environment.transactionServiceURL}` +
-        "/transaction/viewCreditDebitSum",
+      "/transaction/viewCreditDebitSum",
       {
         customerId: creditDebitRequestDTO.customerId,
         startDate: formatDate(creditDebitRequestDTO.startDate, format, locale),
@@ -47,14 +47,14 @@ export class ApiServiceService {
     );
   }
 
-  getViewStatement( creditDebitRequestDTO: CreditDebitRequestDTO): Observable<any> {
+  getViewStatement(creditDebitRequestDTO: CreditDebitRequestDTO): Observable<any> {
     const format = 'yyyy-MM-dd';
     const locale = 'en-US';
     return this.http.post(
-      `${environment.transactionServiceURL}` +'/transaction/viewStatement',
+      `${environment.transactionServiceURL}` + '/transaction/viewStatement',
       {
         "customerId": creditDebitRequestDTO.customerId,
-        "startDate":creditDebitRequestDTO.startDate,
+        "startDate": creditDebitRequestDTO.startDate,
         "endDate": creditDebitRequestDTO.endDate
       }
     );

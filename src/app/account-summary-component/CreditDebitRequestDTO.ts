@@ -1,10 +1,8 @@
-
-
 export class CreditDebitRequestDTO {
 
-    startDate :string ;
-    endDate : string;
-    customerId :string;
+    startDate: string;
+    endDate: string;
+    customerId: string;
 
 
 }

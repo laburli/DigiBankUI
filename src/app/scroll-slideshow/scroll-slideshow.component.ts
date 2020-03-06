@@ -9,7 +9,7 @@ import { ScrollSlideshowItemComponent } from '../scroll-slideshow-item/scroll-sl
   styleUrls: ['./scroll-slideshow.component.css']
 })
 export class ScrollSlideshowComponent implements OnInit {
- // C:\Users\vijangam\Desktop\angular-projects\slideshow\src\app\scroll-slideshow\images\tek1.png
+  // C:\Users\vijangam\Desktop\angular-projects\slideshow\src\app\scroll-slideshow\images\tek1.png
 
   slides: any[] = [
     'assets/images/tek6.jpeg',
@@ -17,10 +17,10 @@ export class ScrollSlideshowComponent implements OnInit {
     'assets/images/tek8.jpg',
     'assets/images/tek9.jpg'
   ]
-  activeSlide=0;
-  
-  
-  
+  activeSlide = 0;
+
+
+
   @ViewChildren(ScrollSlideshowItemComponent) scrollItems: QueryList<ScrollSlideshowItemComponent>;
 
   constructor() {
@@ -28,11 +28,9 @@ export class ScrollSlideshowComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Slides : ");
-    console.log(this.slides);
     setInterval(() => {
-      this.onMouseWheelUpFunc(); 
-      }, 4000);
+      this.onMouseWheelUpFunc();
+    }, 4000);
   }
 
   ngAfterViewInit() {
@@ -43,7 +41,6 @@ export class ScrollSlideshowComponent implements OnInit {
   }
 
   onMouseWheelUpFunc() {
-    console.log("Scrolled up?" + this.activeSlide);
     if (this.activeSlide > 0) {
       this.scrollItems.toArray()[this.activeSlide].toggle(-1);
       if (this.activeSlide >= 1)
@@ -56,7 +53,6 @@ export class ScrollSlideshowComponent implements OnInit {
   }
 
   onMouseWheelDownFunc() {
-    console.log("Scrolled down?" + this.activeSlide);
     if (this.activeSlide < (this.slides.length)) {
       this.scrollItems.toArray()[this.activeSlide].toggle(1);
       if (this.activeSlide < this.slides.length - 1)
@@ -68,13 +64,11 @@ export class ScrollSlideshowComponent implements OnInit {
   }
 
   resetToEnd() {
-    console.log('Reached the beginning !' + this.activeSlide + ":" + this.slides.length);
     this.resetAll();
     this.activeSlide = this.slides.length - 1;
     this.scrollItems.toArray()[this.activeSlide].toggle(-1);
   }
   resetToBeginning() {
-    console.log('Reached the end!' + this.activeSlide + ":" + this.slides.length);
     this.resetAll();
     this.activeSlide = 0;
     this.scrollItems.toArray()[this.activeSlide].toggle(1);
@@ -84,7 +78,5 @@ export class ScrollSlideshowComponent implements OnInit {
     this.scrollItems.forEach(item => {
       item.reset();
     });
-  }  
-  
-
+  }
 }

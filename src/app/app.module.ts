@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { DemoMaterialModule } from './material-module';
 import { MatSelectModule } from '@angular/material/select';
@@ -55,7 +55,7 @@ import { ViewPayeeComponent } from './view-payee/view-payee.component';
     RegisterComponent,
     AlertComponent,
     HomeComponent,
-    BankingComponent,ScrollSlideshowComponent,
+    BankingComponent, ScrollSlideshowComponent,
     ScrollSlideshowItemComponent,
     MouseWheelDirective,
     CustomerComponent,
@@ -69,7 +69,7 @@ import { ViewPayeeComponent } from './view-payee/view-payee.component';
     AccountSummaryComponentComponent,
     AddPayeeComponent,
     ViewPayeeComponent
-   ],
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -82,20 +82,20 @@ import { ViewPayeeComponent } from './view-payee/view-payee.component';
     MatSelectModule,
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.wanderingCubes,
-        backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
-        backdropBorderRadius: '4px',
-        primaryColour: '#ffffff', 
-        secondaryColour: '#ffffff', 
-        tertiaryColour: '#ffffff'
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff',
+      secondaryColour: '#ffffff',
+      tertiaryColour: '#ffffff'
     }),
-   ],
+  ],
   providers: [
     //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,StatementService
+    fakeBackendProvider, StatementService
   ],
   bootstrap: [AppComponent],
 })
 
 export class AppModule {
- }
+}

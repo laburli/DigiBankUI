@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppComponent } from '../app.component';
 
@@ -10,15 +10,12 @@ import { AppComponent } from '../app.component';
 })
 export class PersonalComponent implements OnInit {
 
-  constructor(private router:Router) {
-    
-   }
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
   }
-
-  
-
   // openLogin(){
   // this.router.navigate(['login']);  
   // //window.location.href='/login';

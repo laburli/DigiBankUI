@@ -8,9 +8,9 @@ describe('AddPayeeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddPayeeComponent ]
+      declarations: [AddPayeeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

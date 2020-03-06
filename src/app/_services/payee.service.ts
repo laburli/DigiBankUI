@@ -10,14 +10,13 @@ import { Observable } from "rxjs";
 export class PayeeService {
   body: any;
   payeeBaseURL = `${environment.transactionServiceURL}` + "/payee/";
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getPayeeByCid(cid: string): Observable<Payee[]> {
     return this.http.get<Payee[]>(this.payeeBaseURL + cid);
   }
 
   addPayee(p: Payee): Observable<Payee> {
-    console.log("Inside Add payee method in Service", p);
     return this.http.post<Payee>(this.payeeBaseURL, p);
   }
 
@@ -26,12 +25,10 @@ export class PayeeService {
   }
 
   getPayeeByPID(pid) {
-    console.log("Inside getPayeeByPID of Service Class" + pid);
     return this.http.get(this.payeeBaseURL, { params: { pid: pid } });
   }
 
   updatePayee(pId: number, p: Payee) {
-    console.log("Inside Update payee method in Service", p);
     return this.http.put<Payee>(this.payeeBaseURL + pId, p);
   }
 

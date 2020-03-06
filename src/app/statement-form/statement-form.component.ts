@@ -33,7 +33,7 @@ export class StatementFormComponent implements OnInit {
   disableDate: boolean;
   currentUser: User;
   creditDebitRequestDTO = new CreditDebitRequestDTO();;
-  constructor(private svc: StatementService, private http: HttpClient, private route: ActivatedRoute,  private authenticationService: AuthenticationService, private service: ApiServiceService) {
+  constructor(private svc: StatementService, private http: HttpClient, private route: ActivatedRoute, private authenticationService: AuthenticationService, private service: ApiServiceService) {
     this.maxDate = new Date();
     this.currentUser = this.authenticationService.currentUserValue;
     this.custId = this.authenticationService.currentUserValue.customerId;
@@ -41,13 +41,11 @@ export class StatementFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // this.accountNumber = parseInt(this.route.snapshot.paramMap.get('accNo'));
     this.myForm = new FormGroup({
       'startDate': new FormControl('', Validators.required),
       'endDate': new FormControl('', Validators.required),
       'monthsDD': new FormControl('')
     });
-    
   }
 
   onChange(e) {
@@ -71,38 +69,29 @@ export class StatementFormComponent implements OnInit {
       alert('please select either both dates or months to view the statement');
       return;
     }
-    if(this.myForm.get('startDate').value > this.myForm.get('endDate').value){
+    if (this.myForm.get('startDate').value > this.myForm.get('endDate').value) {
       alert('start date must be either less than or equal to end date. Please re-select the dates');
       return;
     }
     const format = 'yyyy-MM-dd';
     const locale = 'en-US';
-    this.creditDebitRequestDTO.customerId =  this.custId;
+    this.creditDebitRequestDTO.customerId = this.custId;
     this.creditDebitRequestDTO.startDate = formatDate(this.myForm.get('startDate').value, format, locale);
     this.creditDebitRequestDTO.endDate = formatDate(this.myForm.get('endDate').value, format, locale);
-    console.log(JSON.stringify(this.creditDebitRequestDTO));
-   this.service.getViewStatement(this.creditDebitRequestDTO).subscribe(
-    {
-      next: (data) => { this.tabledata = data },
-      error: err => { 
-        this.errorMessage = err.error.Message;
+    this.service.getViewStatement(this.creditDebitRequestDTO).subscribe(
+      {
+        next: (data) => { this.tabledata = data },
+        error: err => {
+          this.errorMessage = err.error.Message;
+        }
       }
-    }
-
-
     );
- 
   }
-
-
-
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     if (this.myForm.get('startDate').value != null || this.myForm.get('endDate').value != null) {
       this.flagValue = true;
     } else {
       this.flagValue = false;
     }
-
   }
-
 }

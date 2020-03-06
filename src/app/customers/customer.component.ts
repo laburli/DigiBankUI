@@ -177,24 +177,17 @@ export class CustomerComponent implements OnInit {
     this.alertService.clear();
 
     this.errorMessage = null;
-    // this.newCustomer = <Customer> this.customerForm.value;
-    console.log(this.customerForm);
-    console.log("Saved: " + JSON.stringify(this.customerForm.value));
-    console.log("Saved: " + JSON.stringify(this.newCustomer));
     this.newCustomer = new Customer(this.customerForm.value);
-    console.log("Saved customer: " + JSON.stringify(this.newCustomer));
     this.customerService.saveCustomer(this.newCustomer).subscribe({
       next: data => {
         this.newCustomer = data;
         this.customerForm.reset();
         this.successMessage = "Customer creation sucess";
         this.callUserService(data);
-        console.log(data);
+
       },
       error: err => {
         this.errorMessage = err.error.errorMessage;
-
-        console.log(this.errorMessage);
       }
     });
   }
@@ -206,8 +199,6 @@ export class CustomerComponent implements OnInit {
     this.newUser.username = customer.customerName;
     this.newUser.customerId = customer.customerId;
     this.newUser.customer = customer;
-    console.log("customer::::" + JSON.stringify(customer));
-    console.log("user customer::::" + JSON.stringify(this.newUser.customer));
     this.userService
       .register(this.newUser)
       .pipe(first())
@@ -215,12 +206,10 @@ export class CustomerComponent implements OnInit {
         data => {
           this.alertService.success("Registration successful", true);
           this.router.navigate(["/login"]);
-          console.log("user info:" + data);
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
-          console.log(error);
         }
       );
   }
