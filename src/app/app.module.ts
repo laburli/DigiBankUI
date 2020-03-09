@@ -42,6 +42,9 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 import { AddPayeeComponent } from './add-payee/add-payee.component';
 import { ViewPayeeComponent } from './view-payee/view-payee.component';
+import { PhoneNumberFormComponent } from './phone-number-form/phone-number-form.component';
+import { AddressFormComponent } from './address-form/address-form.component';
+import { EmailFormComponent } from './email-form/email-form.component';
 
 
 @NgModule({
@@ -68,7 +71,10 @@ import { ViewPayeeComponent } from './view-payee/view-payee.component';
     OpenWishComponent,
     AccountSummaryComponentComponent,
     AddPayeeComponent,
-    ViewPayeeComponent
+    ViewPayeeComponent,
+    PhoneNumberFormComponent,
+    AddressFormComponent,
+    EmailFormComponent
    ],
   imports: [
     BrowserModule,

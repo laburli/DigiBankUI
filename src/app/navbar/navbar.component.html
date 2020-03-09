@@ -37,9 +37,9 @@
       keyboard_arrow_down
     </i>Customer Service</button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Update email</button>
-    <button mat-menu-item>Update Address</button>
-    <button mat-menu-item>Update Customer</button>
+    <button routerLink="/UpdateEmail" mat-menu-item>Update Email</button>
+    <button routerLink="/UpdateAddress" mat-menu-item>Update Address</button>
+    <button routerLink="/UpdatePhone" mat-menu-item>Update Phone Number</button>
   </mat-menu>
   <div class="end">
     Welcome, {{currentUser.firstName}}:{{currentUser.customerId}}

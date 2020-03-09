@@ -1,0 +1,188 @@
+<form (ngSubmit)="update()" [formGroup]="updatePhoneForm" novalidate>
+  <div formArrayName="phoneNumber">
+    <div *ngFor="let phoneNumber of ph; let i = index" [formGroupName]="i">
+      <div class="form-group row mb-2">
+        <div class="col-md-4">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="isPrimaryNumber"
+                id="isPrimaryNumberId"
+                type="checkbox"
+              />Is Primary Number
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label pt-0">Phone Number Type</label
+        >
+        <div class="col-md-4">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="phoneNumberType"
+                id="phoneNumberTypeId"
+                type="radio"
+                value="home"
+              />
+              office
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="phoneNumberType"
+                id="phoneNumberTypeId"
+                type="radio"
+                value="work"
+              />
+              Personal
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="phoneNumberType"
+                id="phoneNumberTypeId"
+                type="radio"
+                value="other"
+              />
+              Other
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="phoneId">Country Code</label
+        >
+        <div class="col-md-4">
+          <input
+            [ngClass]="{
+                      'is-invalid':
+                        (phoneNumber.controls.countryCode.touched ||
+                          phoneNumber.controls.countryCode.dirty) &&
+                        !phoneNumber.controls.countryCode.valid
+                    }"
+            class="form-control"
+            formControlName="countryCode"
+            id="countryCodeId"
+            placeholder="country Code"
+            type="number"
+          />
+          <span class="invalid-feedback">
+                    <span
+                      *ngIf="phoneNumber.controls.countryCode.errors?.required"
+                    >
+                      Please enter your country code.
+                    </span>
+                  </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="phoneId"
+        >City Code</label
+        >
+        <div class="col-md-4">
+          <input
+            [ngClass]="{
+                      'is-invalid':
+                        (phoneNumber.controls.cityCode.touched ||
+                          phoneNumber.controls.cityCode.dirty) &&
+                        !phoneNumber.controls.cityCode.valid
+                    }"
+            class="form-control"
+            formControlName="cityCode"
+            id="cityCodeId"
+            placeholder="country Code"
+            type="number"
+          />
+          <span class="invalid-feedback">
+                    <span *ngIf="phoneNumber.controls.cityCode.errors?.required">
+                      Please enter your city code.
+                    </span>
+                  </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="phoneId"
+        >Phone Number</label
+        >
+        <div class="col-md-4">
+          <input
+            [ngClass]="{
+                      'is-invalid':
+                        (phoneNumber.controls.number.touched ||
+                          phoneNumber.controls.number.dirty) &&
+                        !phoneNumber.controls.number.valid
+                    }"
+            class="form-control"
+            formControlName="number"
+            id="pnId"
+            placeholder="Phone"
+            type="number"
+          />
+          <span class="invalid-feedback">
+                    <span *ngIf="phoneNumber.controls.number.errors?.required">
+                      Please enter your phone number.
+                    </span>
+                    <span *ngIf="phoneNumber.controls.number.errors?.pattern">
+                      Phone number must be digits.
+                    </span>
+                  </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-2">
+    <div class="col-md-4">
+      <button
+        (click)="addPhoneNumbers()"
+        [disabled]="!phoneNumbers.valid"
+        [title]="
+                  phoneNumbers.valid
+                    ? 'Add another PhoneNumber '
+                    : 'Disabled until the existing phone data is valid'
+                "
+        class="btn btn-outline-primary"
+        type="button"
+      >
+        Add Another PhoneNumber
+      </button>
+    </div>
+
+    <div class="col-md-4">
+      <button
+        (click)="removePhoneNumbers()"
+        *ngIf="phoneNumbers.length > 1"
+        class="btn btn-danger"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+  <div class="form-group row mb-2">
+    <div class="offset-md-2 col-md-4">
+      <button
+        [disabled]="!updatePhoneForm.valid"
+        [title]="
+                updatePhoneForm.valid
+                  ? 'Save your entered data'
+                  : 'Disabled until the form data is valid'
+              "
+        class="btn btn-primary mr-3"
+        style="width:80px"
+        type="submit"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</form>

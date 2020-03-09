@@ -18,6 +18,9 @@ import{OpenWishComponent} from './navbar/open-wish/open-wish.component';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 import { ViewPayeeComponent } from './view-payee/view-payee.component';
 import { AddPayeeComponent } from './add-payee/add-payee.component';
+import { EmailFormComponent } from './email-form/email-form.component';
+import { AddressFormComponent } from './address-form/address-form.component';
+import { PhoneNumberFormComponent } from './phone-number-form/phone-number-form.component';
 
 
 
@@ -33,15 +36,16 @@ const routes: Route[] = [
     {path:'aboutus',component:AboutusComponent},
     {path:'wealth',component:WealthComponent},
     //{path:'**',redirectTo:'banking', pathMatch:'full'},
-        {path:'banking', component:BankingComponent} ,
-              {path:'RechargeNow', component:RechargeNowComponent},
-              {path:'SendMoney',component: SendMoneyComponent},
-              {path:'AccountSummary',component: AccountSummaryComponentComponent},
-              {path:'OpenWish',component: OpenWishComponent},
-              { path: 'payeeList', component: ViewPayeeComponent },
-              { path: 'addPayee', component: AddPayeeComponent }
-
-
+    {path:'banking', component:BankingComponent} ,
+    {path:'RechargeNow', component:RechargeNowComponent},
+    {path:'SendMoney',component: SendMoneyComponent},
+    {path:'AccountSummary',component: AccountSummaryComponentComponent},
+    {path:'OpenWish',component: OpenWishComponent},
+    { path: 'payeeList', component: ViewPayeeComponent },
+    { path: 'addPayee', component: AddPayeeComponent },
+    { path: 'UpdateEmail', component: EmailFormComponent },
+    { path: 'UpdateAddress', component: AddressFormComponent },
+    { path: 'UpdatePhone', component: PhoneNumberFormComponent }
 ];
 
 @NgModule({
