@@ -24,7 +24,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { WealthComponent } from './wealth/wealth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AlertComponent } from './alert/alert.component';
+import { AlertComponent } from './shared/alert/alert.component';
 import { HomeComponent } from './home/home.component';
 import { BankingComponent } from './banking/banking.component';
 
@@ -33,11 +33,11 @@ import { ScrollSlideshowComponent } from './scroll-slideshow/scroll-slideshow.co
 import { CustomerComponent } from './customers/customer.component';
 import { StatementFormComponent } from './statement-form/statement-form.component';
 import { TableComponent } from './table/table.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RechargeNowComponent } from './navbar/recharge-now/recharge-now.component';
-import { SendMoneyComponent } from './navbar/send-money/send-money.component';
-import { PayMoneyComponent } from './navbar/pay-money/pay-money.component';
-import { OpenWishComponent } from './navbar/open-wish/open-wish.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { RechargeNowComponent } from './shared/navbar/recharge-now/recharge-now.component';
+import { SendMoneyComponent } from './shared/navbar/send-money/send-money.component';
+import { PayMoneyComponent } from './shared/navbar/pay-money/pay-money.component';
+import { OpenWishComponent } from './shared/navbar/open-wish/open-wish.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 import { AddPayeeComponent } from './add-payee/add-payee.component';

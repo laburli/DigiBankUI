@@ -1,0 +1,157 @@
+<div class="custom">
+  <mat-card class="card">
+    <mat-toolbar>
+      <a mat-button routerLink="/payeeList">
+        <i class="material-icons orange">
+          account_circle
+        </i> My Payees
+      </a>
+
+      <a mat-button>
+        <i class="material-icons orange">
+          account_balance_wallet
+        </i> Own Accounts & Pockets
+      </a>
+
+      <a mat-button color="white">
+        <i class="material-icons orange">
+          mobile_screen_share
+        </i> Mobile(Via MMID)
+      </a>
+      <a mat-button>
+        <i class="material-icons orange">
+          public
+        </i> Overseas Transfer
+      </a>
+      <a mat-button>
+        <i class="material-icons orange">
+          account_balance_wallet
+        </i> Request Money from Overseas
+      </a>
+    </mat-toolbar>
+    <div class="space">
+      <p>
+        Doing a one time transfer?Use quick transfer upto 10000.No need to add a payee. <a href="Click Here"
+          style="color:orange">Click Here</a>
+      </p>
+    </div>
+    <div class="search">
+      <div class="search-container">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput class="payeeSearchForm" (click)="observeChanges()"
+              placeholder="Search Payee by Name or Account Number" aria-label="PayeeList" [matAutocomplete]="auto"
+              [formControl]="payeeCtrl" />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let payee of filteredPayees | async" [value]="payee.name">
+                <div (click)="saveThisPayee(payee.payeeId, payee.name)">
+                  <span>Payee Name: {{ payee.name }}</span> |
+                  <small>Account Number: {{ payee.payeeAccountNumber }}</small>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class=" texts ">
+        <p style="color:orange ">OR</p>
+      </div>
+      <a routerLink="/addPayee">
+        <button mat-raised-button matTooltip="Info about the action "
+          aria-label="Button that displays a tooltip when focused or hovered over ">
+          <i class="material-icons orange ">
+            add
+          </i>
+          Add New Payee
+        </button>
+      </a>
+    </div>
+  </mat-card>
+</div>
+
+<div class="image" id="imgdiv">
+  <img src="../../assets/images/transfermoney.png " />
+  <div class="text ">
+    <p>No Transactions Yet</p>
+  </div>
+</div>
+
+<div class="transaction" style="display:none;" id="txndiv">
+  <mdb-card>
+    <mdb-card-header class="info-color white-text text-center">
+      <h5>
+        <strong>Send Money</strong>
+      </h5>
+    </mdb-card-header>
+
+    <!--Card content-->
+    <mdb-card-body class="px-lg-5">
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <form novalidate (ngSubmit)="transaction(); txnForm.reset()" [formGroup]="txnForm">
+        <div class="form-group row">
+          <label for="customerAccountNumber" class="col">From Account
+
+            <mat-form-field>
+              <mat-select placeholder="Select user account" class="form-control col" name="customerAccountNumber"
+                id="customerAccountNumber" formControlName="customerAccountNumber">
+                <mat-option *ngFor="let account of accountDetails" [value]="account.accountNumber">
+                  {{ account.accountNumber }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div [hidden]="
+                txnForm.get('customerAccountNumber').valid ||
+                txnForm.get('customerAccountNumber').pristine
+              " class="alert alert-danger col">
+              Enter Account number
+            </div>
+          </label>
+
+          <label for="customerAccountNumber" class="col">To:
+            <strong>
+              {{ pname }}
+            </strong>
+          </label>
+        </div>
+        <div class="form-group row">
+          <label for="transactionAmount" class="col-6">Transaction Amount
+
+            <input type="text" class="form-control col" name="transactionAmount" id="transactionAmount"
+              formControlName="transactionAmount" required [ngClass]="{
+                'is-invalid':
+                  (txnForm.get('transactionAmount').touched ||
+                    txnForm.get('transactionAmount').dirty) &&
+                  !txnForm.get('transactionAmount').valid
+              }" />
+            <div [hidden]="
+                txnForm.get('transactionAmount').valid ||
+                txnForm.get('transactionAmount').pristine
+              " class="alert alert-danger col">
+              Please enter transfer amount
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group row">
+          <div class="col"></div>
+          <div class="col-4">
+            <button mdbBtn type="button" color="success" mdbWavesEffect [disabled]="!txnForm.valid" [title]="
+                txnForm.valid
+                  ? 'Save your entered data'
+                  : 'Disabled until all the fields are filled'
+              " (click)="transaction()">
+              Send Money
+            </button>
+          </div>
+          <div class="col"></div>
+        </div>
+      </form>
+    </mdb-card-body>
+  </mdb-card>
+</div>

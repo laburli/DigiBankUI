@@ -12,6 +12,7 @@ import { environment } from "./../../environments/environment";
 import { CreditDebitRequestDTO } from '../CreditDebitRequestDTO';
 import { ApiServiceService } from '../_services/api-service.service';
 import { catchError } from 'rxjs/operators';
+import { AlertService } from '../_services/alert.service';
 @Component({
   selector: 'statement-form',
   templateUrl: './statement-form.component.html',
@@ -33,7 +34,7 @@ export class StatementFormComponent implements OnInit {
   disableDate: boolean;
   currentUser: User;
   creditDebitRequestDTO = new CreditDebitRequestDTO();;
-  constructor(private svc: StatementService, private http: HttpClient, private route: ActivatedRoute, private authenticationService: AuthenticationService, private service: ApiServiceService) {
+  constructor(private svc: StatementService, private http: HttpClient,private alertService: AlertService, private route: ActivatedRoute, private authenticationService: AuthenticationService, private service: ApiServiceService) {
     this.maxDate = new Date();
     this.currentUser = this.authenticationService.currentUserValue;
     this.custId = this.authenticationService.currentUserValue.customerId;
@@ -65,6 +66,7 @@ export class StatementFormComponent implements OnInit {
   onSubmit(): void {
     this.errorMessage = null;
     this.tabledata = null;
+    this.alertService.clear();
     if (!this.myForm.get('startDate').value || !this.myForm.get('endDate').value) {
       alert('please select either both dates or months to view the statement');
       return;

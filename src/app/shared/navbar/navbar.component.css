@@ -1,0 +1,15 @@
+.orange {
+    color: orange;
+}
+
+.custom {
+    display:flex;
+    width: 100%;
+}
+
+.end {
+    display: block;
+    float:right;
+    font-size: 13px;
+    margin-left: 20vw;
+}
