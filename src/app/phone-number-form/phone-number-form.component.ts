@@ -27,7 +27,7 @@ export class PhoneNumberFormComponent implements OnInit {
   mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
   updatePhoneForm: FormGroup;
 
-  private newPhoneNumber: Customer = new Customer();
+  private newPhoneNumber: Customer;
   errorMessage: string;
   successMessage: string;
   loading = false;
@@ -48,12 +48,23 @@ export class PhoneNumberFormComponent implements OnInit {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       console.log(this.currentUser);
 
-      this.editEmployee().then(()=> {
-          console.log(this.customerDetails);
-      });
+      this.customerService.getCustomerDetails(this.currentUser).subscribe(
+         data => {
+              this.customerDetails = data[0];
+              console.log(this.customerDetails);
+              //this.updatePhoneForm.patchValue({phoneNumber: this.customerDetails.phoneNumber});
+              this.customerDetails.phoneNumber.forEach((x) => {
+                  this.phoneNumbers.push(this.fb.group(new Customer(x)));
+              })
+         },
+         err => {
+             alert("Some Error Occurred!");
+             console.log(err);
+         }
+      );
 
       this.updatePhoneForm = this.fb.group({
-                  phoneNumber: this.fb.array([this.buildPhoneNumbers()])
+                  phoneNumber: this.fb.array([])
       });
   }
 
@@ -63,17 +74,19 @@ export class PhoneNumberFormComponent implements OnInit {
 
   removePhoneNumbers() {
       this.phoneNumbers.removeAt(this.phoneNumbers.length - 1);
+      console.log(this.updatePhoneForm.value);
   }
 
   buildPhoneNumbers(): FormGroup {
       return this.fb.group(
           {
-            phoneNumberId: "0",
-            phoneNumberType: "home",
+            phoneNumberId: 0,
             isPrimaryNumber: false,
+            phoneNumberType: "work",
+            countryCode: [, Validators.required],
+            cityCode: [, Validators.required],
             number: ["", Validators.required],
-            countryCode: ["", Validators.required],
-            cityCode: ["", Validators.required]
+            customerId: "2728320",
           }
       );
   }
@@ -87,51 +100,31 @@ export class PhoneNumberFormComponent implements OnInit {
       return (this.updatePhoneForm.get("phoneNumber") as FormArray).controls;
   }
 
-  editEmployee() {
-      return new Promise((resolve) => {
-          this.customerService.getCustomerDetails(this.currentUser).subscribe(
-                       data => {
-                            this.customerDetails = data[0];
-                            console.log(this.customerDetails.phoneNumber);
-                            //this.phoneNumbers.push(this.customerDetails.phoneNumber.length);
-                            this.updatePhoneForm.patchValue({phoneNumber: this.customerDetails.phoneNumber});
-                            resolve();
-                       },
-                       err => {
-                           alert("Some Error Occurred!");
-                           console.log(err);
-                       }
-            );
-      });
-  }
-
   update() {
-      /*this.submitted = true;
+      this.submitted = true;
       this.loading = true;
 
       // reset alerts on submit
       this.alertService.clear();
-
       this.errorMessage = null;
-      // this.newPhoneNumber = <Customer> this.updatePhoneForm.value;
-      console.log(this.updatePhoneForm);
-      console.log("Saved: " + JSON.stringify(this.updatePhoneForm.value));
-      console.log("Saved: " + JSON.stringify(this.newPhoneNumber));
-      this.newPhoneNumber = new Customer(this.updatePhoneForm.value);
-      console.log("Saved customer: " + JSON.stringify(this.newPhoneNumber));
+
+      this.newPhoneNumber = new Customer();
+      this.newPhoneNumber = this.updatePhoneForm.value.phoneNumber;
+      console.log(this.newPhoneNumber);
+
       this.customerService.updatePhoneNumber(this.newPhoneNumber).subscribe({
         next: data => {
+          console.log("Hi");
           this.newPhoneNumber = data;
           this.updatePhoneForm.reset();
           this.successMessage = "Update customer details success";
           console.log(data);
         },
         error: err => {
-          this.errorMessage = err.error.errorMessage;
-
+          this.errorMessage = err.error.error;
           console.log(this.errorMessage);
         }
-      });*/
+      });
     }
 
 }

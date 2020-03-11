@@ -38,4 +38,16 @@ export class CustomerService {
       const url = this.baseUrl + "update-phonenumber-details";
       return this.http.put<Customer>(url, customer);
   }
+
+  updateEmail(customer: Customer): Observable<Customer> {
+        console.log("inside update before call" + customer);
+        const url = this.baseUrl + "update-email-details";
+        return this.http.put<Customer>(url, customer);
+  }
+
+  updateAddress(customer: Customer): Observable<Customer> {
+          console.log("inside update before call" + customer);
+          const url = this.baseUrl + "update-address-details";
+          return this.http.put<Customer>(url, customer);
+  }
 }

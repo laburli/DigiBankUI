@@ -7,8 +7,9 @@ export class Customer {
   public customerName: string;
   public lastName: string;
   public middleName: string;
-  public email: string;
   public sendCatalog: string;
+
+  public email: string;
   public addressId: number;
   public addressType: string;
   public isPrimary: string;
@@ -20,14 +21,16 @@ export class Customer {
   public state: string;
   public country: string;
   public pinCode: string;
+
   public emailId?: number;
   public emailType: string;
   public emailAdress: string;
   public isPrimaryEmail: false;
+
   public phoneNumberId?: number;
+  public isPrimaryNumber = false;
   public phoneNumberType: string;
   public number: string;
-  public isPrimaryNumber = false;
   public countryCode: number;
   public cityCode: number;
 }

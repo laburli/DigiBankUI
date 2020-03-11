@@ -1,1 +1,254 @@
-<p>address-form works!</p>
+<form (ngSubmit)="update()" [formGroup]="updateAddressForm" novalidate>
+  <div formArrayName="address">
+  <div *ngFor="let address of f; let i = index" [formGroupName]="i">
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label pt-0">Address Type</label>
+      <div class="col-md-4">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              formControlName="addressType"
+              id="addressType1Id"
+              type="radio"
+              value="home"
+            />
+            Home
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              formControlName="addressType"
+              id="addressType1Id"
+              type="radio"
+              value="work"
+            />
+            Work
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input
+              class="form-check-input"
+              formControlName="addressType"
+              id="addressType1Id"
+              type="radio"
+              value="other"
+            />
+            Other
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <label attr.for="{{ 'dnoId' + i }}" class="col-md-2 col-form-label">Door Number</label
+      >
+      <div class="col-md-4">
+        <input
+          [ngClass]="{
+                    'is-invalid':
+                      (address.controls.doorNumber.touched ||
+                        address.controls.doorNumber.dirty) &&
+                      !address.controls.doorNumber.valid
+                  }"
+          class="form-control"
+          formControlName="doorNumber"
+          id="{{ 'dnoId' + i }}"
+          placeholder="Door Number (required)"
+          type="text"
+        />
+        <span class="invalid-feedback">
+                  <span *ngIf="address.controls.doorNumber.errors?.required">
+                    Please enter your door number.
+                  </span>
+                </span>
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <label attr.for="{{ 'lmId' + i }}" class="col-md-2 col-form-label"
+      >Land Mark</label
+      >
+      <div class="col-md-4">
+        <input
+          [ngClass]="{
+                    'is-invalid':
+                      (address.controls.landMark.touched ||
+                        address.controls.landMark.dirty) &&
+                      !address.controls.landMark.valid
+                  }"
+          class="form-control"
+          formControlName="landMark"
+          id="{{ 'lmId' + i }}"
+          placeholder="Land Mark (required)"
+          type="text"
+        />
+        <span class="invalid-feedback">
+                  <span *ngIf="address.controls.landMark.errors?.required">
+                    Please enter your Land Mark.
+                  </span>
+                </span>
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <label
+        attr.for="{{ 'streetId' + i }}"
+        class="col-md-2 col-form-label"
+      >Street Address
+      </label>
+<!--      <div class="col-md-4">-->
+<!--        <input [ngClass]="{-->
+<!--                    'is-invalid':-->
+<!--                      (address.controls.street.touched ||-->
+<!--                        address.controls.street.dirty) &&-->
+<!--                      !address.controls.street.valid-->
+<!--                  }" class="form-control" formControlName="street"-->
+<!--               id="{{ 'streetId' + i }}" placeholder="Street address (required)" type="text"/>-->
+<!--        <span class="invalid-feedback">-->
+<!--                  <span *ngIf="address.controls.street.errors?.required">-->
+<!--                    Please enter your street address.-->
+<!--                  </span>-->
+<!--                        </span>-->
+<!--      </div>-->
+    </div>
+
+    <div class="form-group row mb-2">
+      <label attr.for="{{ 'cityId' + i }}" class="col-md-2 col-form-label">City
+      </label>
+      <div class="col-md-4">
+        <input [ngClass]="{
+                    'is-invalid':
+                      (address.controls.city.touched ||
+                        address.controls.city.dirty) &&
+                      !address.controls.city.valid
+                  }" class="form-control" formControlName="city" id="{{ 'cityId' + i }}"
+               placeholder="Street address (required)" type="text"/>
+        <span class="invalid-feedback">
+                  <span *ngIf="address.controls.city.errors?.required">
+                    Please enter your City .
+                  </span>
+                        </span>
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label" for="stateId">State</label>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="state" id="{{ 'stateId' + i }}">
+          <option disabled hidden selected value=""
+          >Select a State...
+          </option
+          >
+          <option value="AP">AP</option>
+          <option value="TS">TS</option>
+          <option value="KA">KA</option>
+        </select>
+        <span class="invalid-feedback">
+                  <span *ngIf="address.controls.state.errors?.range">
+                    Please select your county from dropdown.
+                  </span>
+                        </span>
+      </div>
+    </div>
+
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label" for="countryId">Country</label
+      >
+      <div class="col-md-4">
+        <select
+          class="form-control"
+          formControlName="country"
+          id="{{ 'countryId' + i }}"
+        >
+          <option disabled hidden selected value=""
+          >Select a Country...
+          </option
+          >
+          <option value="IN">IND</option>
+          <option value="US">US</option>
+          <option value="UK">UK</option>
+        </select>
+        <span class="invalid-feedback">
+                  <span *ngIf="address.controls.country.errors?.range">
+                    Please select your county from dropdown.
+                  </span>
+                </span>
+      </div>
+    </div>
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label" for="pincodeId"
+      >Pin Code</label
+      >
+      <div class="col-md-4">
+        <input
+          [ngClass]="{
+                    'is-invalid':
+                      (address.controls.pinCode.touched ||
+                        address.controls.pinCode.dirty) &&
+                      !address.controls.pinCode.valid
+                  }"
+          class="form-control"
+          formControlName="pinCode"
+          id="pincodeId"
+          placeholder="Pin Code"
+          type="number"
+        />
+        <span class="invalid-feedback">
+                  <span *ngIf="address.controls.pinCode.errors?.required">
+                    Please enter your pincode.
+                  </span>
+                </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group row mb-2">
+  <div class="col-md-4">
+    <button
+      (click)="addAddress()"
+      [disabled]="!addresses.valid"
+      [title]="
+                addresses.valid
+                  ? 'Add another mailing address'
+                  : 'Disabled until the existing address data is valid'
+              "
+      class="btn btn-outline-primary"
+      type="button"
+    >
+      Add Another Address
+    </button>
+  </div>
+
+    <div class="col-md-4">
+      <button
+        (click)="removeAddresses()"
+        *ngIf="addresses.length > 1"
+        class="btn btn-danger"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+  <div class="form-group row mb-2">
+    <div class="offset-md-2 col-md-4">
+      <button
+        [disabled]="!updateAddressForm.valid"
+        [title]="
+                updateAddressForm.valid
+                  ? 'Save your entered data'
+                  : 'Disabled until the form data is valid'
+              "
+        class="btn btn-primary mr-3"
+        style="width:80px"
+        type="submit"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</form>

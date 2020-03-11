@@ -1,1 +1,120 @@
-<p>email-form works!</p>
+<form (ngSubmit)="update()" [formGroup]="updateEmailForm" novalidate>
+  <div formArrayName="email">
+    <div *ngFor="let email of e; let i = index" [formGroupName]="i">
+      <div class="form-group row mb-2">
+        <div class="col-md-8">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="isPrimaryEmail"
+                id="isPrimaryEmailId"
+                type="checkbox"
+              />Is Primary Email
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label pt-0">Email Type</label>
+        <div class="col-md-8">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="emailType"
+                id="emailType1Id"
+                type="radio"
+                value="home"
+              />
+              office
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="emailType"
+                id="emailType1Id"
+                type="radio"
+                value="work"
+              />
+              Personal
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                formControlName="emailType"
+                id="email1Id"
+                type="radio"
+                value="other"
+              />
+              Other
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label attr.for="{{ 'emailId' + i }}" class="col-md-2 col-form-label">Email
+        </label>
+        <div class="col-md-4">
+          <input [ngClass]="{
+                      'is-invalid':
+                        (email.controls.emailAddress.touched ||
+                          email.controls.emailAddress.dirty) &&
+                        !email.controls.emailAddress.valid
+                    }" class="form-control" formControlName="emailAddress"
+                 id="{{ 'emailAddressId' + i }}" placeholder="Email address (required)" type="email"/>
+
+          <span class="invalid-feedback">
+                    <span *ngIf="email.controls.emailAddress.errors?.required">
+                      Please enter email address .
+                    </span>
+              <span *ngIf="email.controls.emailAddress.errors?.email">
+                      Please enter valid email.
+                    </span>
+              </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row mb-2">
+    <div class="col-md-4">
+      <button (click)="addEmails()" [disabled]="!emails.valid" [title]="
+                  emails.valid
+                    ? 'Add another Email address'
+                    : 'Disabled until the existing email data is valid'
+                " class="btn btn-outline-primary" type="button">
+        Add Another Email
+      </button>
+    </div>
+
+    <div class="col-md-4">
+      <button (click)="removeItem()" *ngIf="emails.length > 1" class="btn btn-danger">
+        Remove
+      </button>
+    </div>
+  </div>
+  <div class="form-group row mb-2">
+    <div class="offset-md-2 col-md-4">
+      <button
+        [disabled]="!updateEmailForm.valid"
+        [title]="
+                updateEmailForm.valid
+                  ? 'Save your entered data'
+                  : 'Disabled until the form data is valid'
+              "
+        class="btn btn-primary mr-3"
+        style="width:80px"
+        type="submit"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</form>
