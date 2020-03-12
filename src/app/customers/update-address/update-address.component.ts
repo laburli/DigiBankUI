@@ -9,20 +9,20 @@ import {
   FormArray
 } from "@angular/forms";
 
-import { Customer } from "../customers/customer";
-import { User } from "../_models/User";
+import { Customer } from "../customer";
+import { User } from "../../_models/User";
 
 import { Router } from "@angular/router";
-import { AlertService } from "../_services/alert.service";
-import { AuthenticationService } from './../_services/authentication.service';
-import { CustomerService } from "../customers/customer.service";
+import { AlertService } from "../../_services/alert.service";
+import { AuthenticationService } from '../../_services/authentication.service';
+import { CustomerService } from "../customer.service";
 
 @Component({
-  selector: 'app-address-form',
-  templateUrl: './address-form.component.html',
-  styleUrls: ['./address-form.component.css']
+  selector: 'app-update-address',
+  templateUrl: './update-address.component.html',
+  styleUrls: ['./update-address.component.css']
 })
-export class AddressFormComponent implements OnInit {
+export class UpdateAddressComponent implements OnInit {
 
   updateAddressForm: FormGroup;
   private newCustomer: Customer = new Customer();

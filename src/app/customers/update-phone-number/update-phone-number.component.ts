@@ -9,20 +9,20 @@ import {
   FormArray
 } from "@angular/forms";
 
-import { Router } from "@angular/router";
-import { AlertService } from "../_services/alert.service";
-import { AuthenticationService } from './../_services/authentication.service';
-import { CustomerService } from "../customers/customer.service";
+import { Customer } from "../customer";
+import { User } from "../../_models/User";
 
-import { Customer } from "../customers/customer";
-import { User } from "../_models/User";
+import { Router } from "@angular/router";
+import { AlertService } from "../../_services/alert.service";
+import { AuthenticationService } from '../../_services/authentication.service';
+import { CustomerService } from "../customer.service";
 
 @Component({
-  selector: 'app-phone-number-form',
-  templateUrl: './phone-number-form.component.html',
-  styleUrls: ['./phone-number-form.component.css']
+  selector: 'app-update-phone-number',
+  templateUrl: './update-phone-number.component.html',
+  styleUrls: ['./update-phone-number.component.css']
 })
-export class PhoneNumberFormComponent implements OnInit {
+export class UpdatePhoneNumberComponent implements OnInit {
 
   mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
   updatePhoneForm: FormGroup;

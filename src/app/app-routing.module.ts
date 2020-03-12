@@ -18,12 +18,9 @@ import{OpenWishComponent} from './navbar/open-wish/open-wish.component';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 import { ViewPayeeComponent } from './view-payee/view-payee.component';
 import { AddPayeeComponent } from './add-payee/add-payee.component';
-import { EmailFormComponent } from './email-form/email-form.component';
-import { AddressFormComponent } from './address-form/address-form.component';
-import { PhoneNumberFormComponent } from './phone-number-form/phone-number-form.component';
-
-
-
+import { UpdateEmailComponent } from './customers/update-email/update-email.component';
+import { UpdateAddressComponent } from './customers/update-address/update-address.component';
+import { UpdatePhoneNumberComponent } from './customers/update-phone-number/update-phone-number.component';
 
 const routes: Route[] = [
     {path:'viewStatement', component: StatementFormComponent},
@@ -43,9 +40,9 @@ const routes: Route[] = [
     {path:'OpenWish',component: OpenWishComponent},
     { path: 'payeeList', component: ViewPayeeComponent },
     { path: 'addPayee', component: AddPayeeComponent },
-    { path: 'UpdateEmail', component: EmailFormComponent },
-    { path: 'UpdateAddress', component: AddressFormComponent },
-    { path: 'UpdatePhone', component: PhoneNumberFormComponent }
+    { path: 'UpdateEmail', component: UpdateEmailComponent },
+    { path: 'UpdateAddress', component: UpdateAddressComponent },
+    { path: 'UpdatePhone', component: UpdatePhoneNumberComponent }
 ];
 
 @NgModule({

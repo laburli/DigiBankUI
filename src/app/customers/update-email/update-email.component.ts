@@ -8,13 +8,13 @@ import {
   FormArray
 } from "@angular/forms";
 
-import { Customer } from "../customers/customer";
-import { User } from "../_models/User";
+import { Customer } from "../customer";
+import { User } from "../../_models/User";
 
 import { Router } from "@angular/router";
-import { AlertService } from "../_services/alert.service";
-import { AuthenticationService } from './../_services/authentication.service';
-import { CustomerService } from "../customers/customer.service";
+import { AlertService } from "../../_services/alert.service";
+import { AuthenticationService } from '../../_services/authentication.service';
+import { CustomerService } from "../customer.service";
 
 /*function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const emailControl = c.get("email").get("emailAddress");
@@ -26,11 +26,11 @@ import { CustomerService } from "../customers/customer.service";
 }*/
 
 @Component({
-  selector: 'app-email-form',
-  templateUrl: './email-form.component.html',
-  styleUrls: ['./email-form.component.css']
+  selector: 'app-update-email',
+  templateUrl: './update-email.component.html',
+  styleUrls: ['./update-email.component.css']
 })
-export class EmailFormComponent implements OnInit {
+export class UpdateEmailComponent implements OnInit {
 
   updateEmailForm: FormGroup;
   private newCustomer: Customer = new Customer();

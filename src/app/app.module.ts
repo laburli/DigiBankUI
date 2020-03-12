@@ -42,9 +42,9 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { AccountSummaryComponentComponent } from './account-summary-component/account-summary-component.component';
 import { AddPayeeComponent } from './add-payee/add-payee.component';
 import { ViewPayeeComponent } from './view-payee/view-payee.component';
-import { PhoneNumberFormComponent } from './phone-number-form/phone-number-form.component';
-import { AddressFormComponent } from './address-form/address-form.component';
-import { EmailFormComponent } from './email-form/email-form.component';
+import { UpdatePhoneNumberComponent } from './customers/update-phone-number/update-phone-number.component';
+import { UpdateAddressComponent } from './customers/update-address/update-address.component';
+import { UpdateEmailComponent } from './customers/update-email/update-email.component';
 
 
 @NgModule({
@@ -72,9 +72,9 @@ import { EmailFormComponent } from './email-form/email-form.component';
     AccountSummaryComponentComponent,
     AddPayeeComponent,
     ViewPayeeComponent,
-    PhoneNumberFormComponent,
-    AddressFormComponent,
-    EmailFormComponent
+    UpdatePhoneNumberComponent,
+    UpdateAddressComponent,
+    UpdateEmailComponent
    ],
   imports: [
     BrowserModule,
@@ -88,10 +88,10 @@ import { EmailFormComponent } from './email-form/email-form.component';
     MatSelectModule,
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.wanderingCubes,
-        backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+        backdropBackgroundColour: 'rgba(0,0,0,0.1)',
         backdropBorderRadius: '4px',
-        primaryColour: '#ffffff', 
-        secondaryColour: '#ffffff', 
+        primaryColour: '#ffffff',
+        secondaryColour: '#ffffff',
         tertiaryColour: '#ffffff'
     }),
    ],
